@@ -4,6 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Investment Time Tracker</title>
+
+<!-- Social Preview / Open Graph -->
+<meta property="og:title" content="Investment Time Tracker">
+<meta property="og:description" content="Calculate your true hourly rate from active investing and compare against S&P 500, NASDAQ, Gold, Silver, Bitcoin & FTSE 100 benchmarks.">
+<meta property="og:image" content="https://raw.githubusercontent.com/HarryH-Tech-2/time-spent-investing/main/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+
+<!-- Twitter/X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@HarryHH1993">
+<meta name="twitter:title" content="Investment Time Tracker">
+<meta name="twitter:description" content="Calculate your true hourly rate from active investing and compare against S&P 500, NASDAQ, Gold, Silver, Bitcoin & FTSE 100 benchmarks.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/HarryH-Tech-2/time-spent-investing/main/social-preview.png">
+
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%231a7a4c'/><stop offset='100%25' stop-color='%230ea5e9'/></linearGradient></defs><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50' y='62' text-anchor='middle' font-size='40' font-weight='bold' font-family='serif' fill='white'>$t</text></svg>">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -64,6 +80,15 @@ body{
 }
 .bmc-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,221,0,.4)}
 .bmc-btn svg{width:18px;height:18px}
+.nav-links{display:flex;align-items:center;gap:.75rem}
+.x-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:10px;text-decoration:none;
+  background:#0f0f0f;color:#fff;
+  transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+.x-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.x-btn svg{width:16px;height:16px}
 
 /* Layout */
 .container{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem;position:relative;z-index:1}
@@ -345,10 +370,15 @@ body{
       <div class="brand-icon">$t</div>
       <span>Investment Time Tracker</span>
     </a>
-    <a href="https://buymeacoffee.com/harryhh" target="_blank" rel="noopener" class="bmc-btn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
-      Buy me a coffee
-    </a>
+    <div class="nav-links">
+      <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener" class="x-btn" title="Follow on X">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://buymeacoffee.com/harryhh" target="_blank" rel="noopener" class="bmc-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+        Buy me a coffee
+      </a>
+    </div>
   </div>
 </nav>
 
