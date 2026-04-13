@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Much Money Can I Make Per Hour Investing? | Investment Time Tracker</title>
+<meta name="description" content="What's your real hourly rate from active investing? I break down the math, compare against benchmarks, and share what most people get wrong about investment returns per hour.">
+
+<!-- Social Preview / Open Graph -->
+<meta property="og:title" content="How Much Money Can I Make Per Hour Investing?">
+<meta property="og:description" content="What's your real hourly rate from active investing? The math might surprise you.">
+<meta property="og:image" content="https://raw.githubusercontent.com/HarryH-Tech-2/time-spent-investing/main/blog-money-per-hour.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@HarryHH1993">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%231a7a4c'/><stop offset='100%25' stop-color='%230ea5e9'/></linearGradient></defs><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50' y='62' text-anchor='middle' font-size='40' font-weight='bold' font-family='serif' fill='white'>$t</text></svg>">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;--surface:#ffffff;--surface2:#f7f7f8;--surface3:#efefef;
+  --border:#e2e2e6;--border-light:#d0d0d6;
+  --text:#1a1a1a;--text-muted:#666;--text-dim:#999;
+  --green:#0d8a50;--green-dim:#0d8a5012;--green-glow:#0d8a5030;
+  --red:#c92a4a;--red-dim:#c92a4a10;
+  --gold:#a07820;--gold-dim:#a0782010;
+  --accent:#4a3db8;--accent-dim:#4a3db812;
+  --shadow:0 1px 3px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.03);
+  --shadow-lg:0 4px 12px rgba(0,0,0,.05), 0 16px 40px rgba(0,0,0,.05);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 1.5rem}
+.navbar-inner{max-width:1100px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between}
+.navbar-brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.1rem;color:var(--text);text-decoration:none}
+.navbar-brand .brand-icon{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#1a7a4c,#0ea5e9);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;font-weight:900}
+.nav-links{display:flex;align-items:center;gap:.75rem}
+.x-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;text-decoration:none;background:#0f0f0f;color:#fff;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.x-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.x-btn svg{width:16px;height:16px}
+.bmc-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;border-radius:10px;text-decoration:none;background:#ffdd00;color:#000;font-weight:600;font-size:.82rem;transition:all .25s;box-shadow:0 2px 8px rgba(255,221,0,.3)}
+.bmc-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,221,0,.4)}
+.bmc-btn svg{width:18px;height:18px}
+
+.blog-dropdown{position:relative}
+.blog-dropdown-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:10px;text-decoration:none;background:var(--surface2);color:var(--text);font-weight:600;font-size:.82rem;transition:all .25s;border:1px solid var(--border);cursor:pointer}
+.blog-dropdown-btn:hover{background:var(--surface3);transform:translateY(-1px)}
+.blog-dropdown-btn svg{width:14px;height:14px;transition:transform .2s}
+.blog-dropdown.open .blog-dropdown-btn svg{transform:rotate(180deg)}
+.blog-dropdown-menu{display:none;position:absolute;top:calc(100% + 6px);right:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden;z-index:200}
+.blog-dropdown.open .blog-dropdown-menu{display:block}
+.blog-dropdown-menu a{display:block;padding:.75rem 1rem;text-decoration:none;color:var(--text);font-size:.82rem;transition:background .15s;border-bottom:1px solid var(--border)}
+.blog-dropdown-menu a:last-child{border-bottom:none}
+.blog-dropdown-menu a:hover{background:var(--surface2)}
+.blog-dropdown-menu a .blog-menu-title{font-weight:600;display:block}
+.blog-dropdown-menu a .blog-menu-date{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
+
+.blog-container{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem;position:relative;z-index:1}
+.blog-hero-img{width:100%;height:auto;border-radius:16px;margin-bottom:2rem;border:1px solid var(--border);box-shadow:var(--shadow)}
+.blog-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;font-size:.8rem;color:var(--text-muted);flex-wrap:wrap}
+.blog-meta a{color:var(--accent);text-decoration:none;font-weight:600}
+.blog-meta a:hover{text-decoration:underline}
+.blog-date{color:var(--text-dim)}
+.blog-tag{display:inline-block;padding:.2rem .6rem;border:1px solid var(--border);border-radius:100px;font-size:.65rem;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase}
+
+.blog-content h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.5rem;background:linear-gradient(135deg,#1a1a1a 40%,var(--text-muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.blog-content h2{font-size:1.35rem;font-weight:700;margin:2.5rem 0 1rem;color:var(--text);letter-spacing:-0.01em}
+.blog-content h3{font-size:1.1rem;font-weight:600;margin:2rem 0 .75rem;color:var(--text)}
+.blog-content p{font-size:1rem;line-height:1.75;color:var(--text);margin-bottom:1.25rem}
+.blog-content a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.blog-content a:hover{color:var(--green)}
+.blog-content ul,.blog-content ol{margin:1rem 0 1.5rem 1.5rem;line-height:1.75}
+.blog-content li{margin-bottom:.4rem;font-size:1rem}
+
+.key-summary{background:var(--green-dim);border:1px solid #0d8a5025;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem}
+.key-summary-title{font-size:.7rem;font-weight:700;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+.key-summary ul{margin:0 0 0 1.25rem;list-style:disc}
+.key-summary li{font-size:.9rem;color:var(--text);line-height:1.6;margin-bottom:.3rem}
+
+.faq-section{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+.faq-section h2{margin-top:0}
+.faq-item{margin-bottom:1.5rem}
+.faq-item h3{color:var(--accent);margin-bottom:.4rem;font-size:1rem}
+.faq-item p{margin-bottom:0;font-size:.95rem;color:var(--text-muted)}
+
+.back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--text-muted);text-decoration:none;margin-bottom:1.5rem}
+.back-link:hover{color:var(--accent)}
+.blog-footer{margin-top:3rem;padding:1.25rem 0;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-dim)}
+
+@media(max-width:700px){.blog-container{padding:1.25rem 1rem 3rem}.navbar-brand span{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <div class="brand-icon">$t</div>
+      <span>Investment Time Tracker</span>
+    </a>
+    <div class="nav-links">
+      <div class="blog-dropdown" id="blogDropdown">
+        <button class="blog-dropdown-btn" onclick="document.getElementById('blogDropdown').classList.toggle('open')">
+          Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="blog-dropdown-menu">
+          <a href="blog-how-long-should-i-spend-investing.html">
+            <span class="blog-menu-title">How Long Should I Spend Investing?</span>
+            <span class="blog-menu-date">March 18, 2026</span>
+          </a>
+          <a href="blog-how-much-money-can-i-make-per-hour-investing.html">
+            <span class="blog-menu-title">How Much Money Can I Make Per Hour Investing?</span>
+            <span class="blog-menu-date">March 28, 2026</span>
+          </a>
+          <a href="blog-how-to-track-time-spent-investing.html">
+            <span class="blog-menu-title">How to Track the Time I Spend Investing</span>
+            <span class="blog-menu-date">April 8, 2026</span>
+          </a>
+        </div>
+      </div>
+      <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener" class="x-btn" title="Follow on X">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://buymeacoffee.com/harryhh" target="_blank" rel="noopener" class="bmc-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+        Buy me a coffee
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="blog-container">
+  <a href="blog.html" class="back-link">&larr; All posts</a>
+
+  <article class="blog-content">
+    <h1>How Much Money Can I Make Per Hour Investing?</h1>
+
+    <div class="blog-meta">
+      <span>By <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener">Harry</a></span>
+      <span class="blog-date">March 28, 2026</span>
+      <span class="blog-tag">Returns</span>
+    </div>
+
+    <img src="blog-money-per-hour.png" alt="Calculator next to stacks of coins with upward graph" class="blog-hero-img" loading="lazy">
+
+    <div class="key-summary">
+      <div class="key-summary-title">Key Takeaways</div>
+      <ul>
+        <li>Your hourly rate from investing depends on your portfolio size, returns, and the time you put in. Most retail investors earn less per hour than they think.</li>
+        <li>Someone with a $50,000 portfolio earning 10% a year who spends 5 hours a week invests 260 hours for $5,000, thats about $19 per hour.</li>
+        <li>The same person could earn $6,500 passively via an S&P 500 index fund with near zero hours, making their active "edge" worth very little.</li>
+        <li>Portfolio size is the single biggest lever. The math only starts to work when you're managing substantial capital.</li>
+      </ul>
+    </div>
+
+    <p>I remember the first year I calculated my actual hourly rate from investing. I thought I'd been doing well. My portfolio was up about 12%, I'd made some good picks, and I felt like I had a real edge. Then I sat down and divided my gains by the hours I'd spent, and the number was honestly embarrassing.</p>
+
+    <p>This is a question that almost nobody in the investing world talks about, and I think thats because the answer makes most people uncomfortable. So let's actually do the math.</p>
+
+    <h2>How Do You Calculate Your Hourly Rate From Investing?</h2>
+
+    <p>The formula is straightforward, but most people skip a critical step. Here's how I think about it:</p>
+
+    <ol>
+      <li><strong>Calculate your total active returns</strong> for the period</li>
+      <li><strong>Subtract what you would have earned passively</strong> by doing nothing (e.g., S&P 500 returns on the same capital)</li>
+      <li><strong>Divide by total hours spent</strong> on investing activities</li>
+    </ol>
+
+    <p>That second step is the one people skip. If you earned 10% but the S&P 500 also earned 10%, your active investing added zero value. You could have made the same money watching Netflix. I built the <a href="index.html">Investment Time Tracker</a> specifically to automate this calculation, because doing it manually every month was tedious.</p>
+
+    <h2>What Does the Math Actually Look Like?</h2>
+
+    <p>Let me walk through some realistic scenarios. These numbers might sting a bit, but I think honesty is more useful then comfort.</p>
+
+    <h3>Scenario 1: The Casual Investor ($25,000 Portfolio)</h3>
+
+    <p>Let's say you have a $25,000 portfolio and you spend 3 hours per week on investing. Over a year, that's 156 hours. If you earn a 12% return (a good year), you've made $3,000. But if the S&P 500 returned 10% that same year, your passive benchmark is $2,500. Your active edge is $500 divided by 156 hours, which comes out to about $3.20 per hour.</p>
+
+    <p>That is less than a third of minimum wage in most states.</p>
+
+    <h3>Scenario 2: The Serious Hobbyist ($100,000 Portfolio)</h3>
+
+    <p>With $100,000 and the same time commitment, the numbers improve. A 12% return is $12,000 against a $10,000 passive benchmark. Your active edge is $2,000 divided by 156 hours, giving you roughly $12.80 per hour. Better, but still below the median hourly wage in the US.</p>
+
+    <h3>Scenario 3: The Semi-Professional ($500,000 Portfolio)</h3>
+
+    <p>Now we're getting somewhere. At $500,000, that same 2% active edge is worth $10,000 over 156 hours, which works out to about $64 per hour. This starts to look like a respectable hourly rate, but you need half a million dollars in investable assets before the math even begins to make sense.</p>
+
+    <h2>Why Does Portfolio Size Matter So Much?</h2>
+
+    <p>This is the uncomfortable truth about investing returns per hour. The time you spend is roughly the same whether you're managing $10,000 or $1,000,000. Reading an earnings report takes the same amount of time regardless of how many shares you own. But the dollar value of your "edge" scales directly with portfolio size.</p>
+
+    <p>A <a href="https://www.nber.org/papers/w29370" target="_blank" rel="noopener">2023 NBER working paper</a> on retail investor performance found that the median active retail investor underperforms the market by about 1.5% annually after transaction costs. That means for most people, the hourly rate from active investing is actually negative. You're paying to do extra work.</p>
+
+    <h2>What About Day Traders and Options Traders?</h2>
+
+    <p>Day trading is where the hourly rate conversation gets really grim. A widely cited <a href="https://www.sciencedirect.com/science/article/abs/pii/S1386418121000190" target="_blank" rel="noopener">study of Brazilian day traders</a> found that 97% of persistent day traders lost money. The average day trader spends 6 to 8 hours a day on trading, which means their effective hourly rate is deeply negative.</p>
+
+    <p>Options trading can theoretically produce higher percentage returns, but the win rate is lower and the time required for research and monitoring is significant. In my experience, the people making consistent money from options are either selling premium with large portfolios or they have a systematic edge from professional experience. For most retail investors, options trading produces an even worse hourly rate than stock picking.</p>
+
+    <h2>How Can I Improve My Investing Hourly Rate?</h2>
+
+    <p>If you've done the math and your hourly rate is depressing, here are the levers you can actually pull:</p>
+
+    <ul>
+      <li><strong>Reduce time spent.</strong> The easiest lever. <a href="blog-how-long-should-i-spend-investing.html">Cut your investing time</a> to 1 to 2 hours per week and focus only on high-impact decisions</li>
+      <li><strong>Increase portfolio size.</strong> This usually means earning more from your career and saving aggressively, not taking more risk</li>
+      <li><strong>Accept passive returns.</strong> If your active edge is small or negative, go passive. An hourly rate of infinity (passive returns divided by zero hours) beats any active rate</li>
+      <li><strong>Specialize deeply.</strong> If you're going to be active, develop genuine expertise in one narrow area rather than being a generalist across everything</li>
+    </ul>
+
+    <h3>Should I Just Go Fully Passive Then?</h3>
+
+    <p>For most people? Yes, honestly. I say that as someone who actively invests. But I also <a href="blog-how-to-track-time-spent-investing.html">track my time carefully</a> and I know my numbers. If your hourly rate from active investing is below what you earn at your day job, every hour spent investing is an hour that would've been more productive spent on career development or a side hustle.</p>
+
+    <p>The people who should actively invest are those with large portfolios, genuine analytical skill, emotional discipline, and a measurable track record of outperformance. If you have all four, you're in the minority, and the math works in your favour.</p>
+
+    <h2>The Number That Changed My Perspective</h2>
+
+    <p>The calculation that really changed how I think about this: if you earn $50 per hour at your job and you spend 5 hours a week on investing, you're implicitly valuing that investing time at $250 per week. Over a year, that's $13,000 in opportunity cost. Your active investing needs to generate $13,000 more than a passive strategy just to break even on your time.</p>
+
+    <p>On a $100,000 portfolio, that means you need to beat the market by 13 percentage points. Nobody does that consistently. Not hedge funds, not Warren Buffett, not anyone. That's the math that made me cut my <a href="blog-how-long-should-i-spend-investing.html">investing time dramatically</a> and redirect those hours into my actual career.</p>
+
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <h3>What's a good hourly rate from investing?</h3>
+        <p>There's no universal benchmark, but I think your investing hourly rate should at least match what you could earn at your day job. If it doesn't, your time is more productive spent on career development. For context, most retail investors who calculate this number honestly find it's below $20 per hour unless they have a portfolio above $200,000.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do dividends change the hourly rate calculation?</h3>
+        <p>Dividends should be included in your total returns, but they don't fundamentally change the math. Dividend stocks have historically returned roughly the same as the broader market. The key question remains whether your active selection of dividend stocks outperforms a simple dividend index fund, after accounting for time.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What if I'm learning while investing?</h3>
+        <p>There's real value in financial education, especially early on. I'd separate "learning time" from "active management time" in your tracking. The first 100 hours of learning about investing has enormous value. But the 500th hour of reading stock analysis has much less. Be honest about when learning becomes procrastination.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How do I track my investing hours accurately?</h3>
+        <p>I recommend a dedicated time tracking approach. I've written a full guide on <a href="blog-how-to-track-time-spent-investing.html">how to track the time you spend investing</a>. The short version: use a timer app, count everything including "casual" market checking, and review your totals monthly.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="blog-footer">
+    <p>&copy; 2026 Investment Time Tracker. For educational purposes only, not financial advice.</p>
+  </div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+  const dropdown = document.getElementById('blogDropdown');
+  if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+});
+</script>
+</body>
+</html>

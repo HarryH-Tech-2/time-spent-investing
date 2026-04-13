@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Investment Time Tracker</title>
+<meta name="description" content="Articles about investing time management, hourly returns, and tracking your portfolio hours. Practical insights for retail investors.">
+
+<meta property="og:title" content="Blog | Investment Time Tracker">
+<meta property="og:description" content="Articles about investing time management, hourly returns, and tracking your portfolio hours.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@HarryHH1993">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%231a7a4c'/><stop offset='100%25' stop-color='%230ea5e9'/></linearGradient></defs><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50' y='62' text-anchor='middle' font-size='40' font-weight='bold' font-family='serif' fill='white'>$t</text></svg>">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;--surface:#ffffff;--surface2:#f7f7f8;--surface3:#efefef;
+  --border:#e2e2e6;--border-light:#d0d0d6;
+  --text:#1a1a1a;--text-muted:#666;--text-dim:#999;
+  --green:#0d8a50;--green-dim:#0d8a5012;--green-glow:#0d8a5030;
+  --red:#c92a4a;--red-dim:#c92a4a10;
+  --gold:#a07820;--gold-dim:#a0782010;
+  --accent:#4a3db8;--accent-dim:#4a3db812;
+  --shadow:0 1px 3px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.03);
+  --shadow-lg:0 4px 12px rgba(0,0,0,.05), 0 16px 40px rgba(0,0,0,.05);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 1.5rem}
+.navbar-inner{max-width:1100px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between}
+.navbar-brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.1rem;color:var(--text);text-decoration:none}
+.navbar-brand .brand-icon{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#1a7a4c,#0ea5e9);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;font-weight:900}
+.nav-links{display:flex;align-items:center;gap:.75rem}
+.x-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;text-decoration:none;background:#0f0f0f;color:#fff;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.x-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.x-btn svg{width:16px;height:16px}
+.bmc-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;border-radius:10px;text-decoration:none;background:#ffdd00;color:#000;font-weight:600;font-size:.82rem;transition:all .25s;box-shadow:0 2px 8px rgba(255,221,0,.3)}
+.bmc-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,221,0,.4)}
+.bmc-btn svg{width:18px;height:18px}
+
+.blog-dropdown{position:relative}
+.blog-dropdown-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:10px;text-decoration:none;background:var(--surface2);color:var(--text);font-weight:600;font-size:.82rem;transition:all .25s;border:1px solid var(--border);cursor:pointer}
+.blog-dropdown-btn:hover{background:var(--surface3);transform:translateY(-1px)}
+.blog-dropdown-btn svg{width:14px;height:14px;transition:transform .2s}
+.blog-dropdown.open .blog-dropdown-btn svg{transform:rotate(180deg)}
+.blog-dropdown-menu{display:none;position:absolute;top:calc(100% + 6px);right:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden;z-index:200}
+.blog-dropdown.open .blog-dropdown-menu{display:block}
+.blog-dropdown-menu a{display:block;padding:.75rem 1rem;text-decoration:none;color:var(--text);font-size:.82rem;transition:background .15s;border-bottom:1px solid var(--border)}
+.blog-dropdown-menu a:last-child{border-bottom:none}
+.blog-dropdown-menu a:hover{background:var(--surface2)}
+.blog-dropdown-menu a .blog-menu-title{font-weight:600;display:block}
+.blog-dropdown-menu a .blog-menu-date{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
+
+.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem;position:relative;z-index:1}
+
+.page-header{text-align:center;padding:2.5rem 0 2rem;position:relative}
+.page-header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.page-header h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-0.02em;line-height:1.1;background:linear-gradient(135deg,#1a1a1a 40%,var(--text-muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.page-header p{color:var(--text-muted);margin-top:.75rem;font-size:.95rem}
+
+.blog-grid{display:flex;flex-direction:column;gap:1.5rem}
+.blog-card{
+  display:grid;grid-template-columns:280px 1fr;gap:1.5rem;
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  overflow:hidden;transition:border-color .3s, box-shadow .3s, transform .3s;
+  box-shadow:var(--shadow);text-decoration:none;color:inherit;
+}
+.blog-card:hover{border-color:var(--border-light);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.blog-card-img{width:100%;height:100%;object-fit:cover;min-height:200px}
+.blog-card-body{padding:1.5rem 1.5rem 1.5rem 0;display:flex;flex-direction:column;justify-content:center}
+.blog-card-date{font-size:.7rem;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem}
+.blog-card-title{font-size:1.25rem;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:.5rem}
+.blog-card-excerpt{font-size:.88rem;color:var(--text-muted);line-height:1.6}
+.blog-card-tag{display:inline-block;margin-top:.75rem;padding:.2rem .6rem;border:1px solid var(--border);border-radius:100px;font-size:.6rem;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase}
+
+.blog-footer{margin-top:3rem;padding:1.25rem 0;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-dim)}
+
+@media(max-width:700px){
+  .container{padding:1.25rem 1rem 3rem}
+  .blog-card{grid-template-columns:1fr}
+  .blog-card-img{max-height:200px}
+  .blog-card-body{padding:1.25rem}
+  .navbar-brand span{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <div class="brand-icon">$t</div>
+      <span>Investment Time Tracker</span>
+    </a>
+    <div class="nav-links">
+      <div class="blog-dropdown" id="blogDropdown">
+        <button class="blog-dropdown-btn" onclick="document.getElementById('blogDropdown').classList.toggle('open')">
+          Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="blog-dropdown-menu">
+          <a href="blog-how-long-should-i-spend-investing.html">
+            <span class="blog-menu-title">How Long Should I Spend Investing?</span>
+            <span class="blog-menu-date">March 18, 2026</span>
+          </a>
+          <a href="blog-how-much-money-can-i-make-per-hour-investing.html">
+            <span class="blog-menu-title">How Much Money Can I Make Per Hour Investing?</span>
+            <span class="blog-menu-date">March 28, 2026</span>
+          </a>
+          <a href="blog-how-to-track-time-spent-investing.html">
+            <span class="blog-menu-title">How to Track the Time I Spend Investing</span>
+            <span class="blog-menu-date">April 8, 2026</span>
+          </a>
+        </div>
+      </div>
+      <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener" class="x-btn" title="Follow on X">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://buymeacoffee.com/harryhh" target="_blank" rel="noopener" class="bmc-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+        Buy me a coffee
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <header class="page-header">
+    <h1>Blog</h1>
+    <p>Practical insights on investing time, returns per hour, and smarter portfolio management</p>
+  </header>
+
+  <div class="blog-grid">
+    <a href="blog-how-to-track-time-spent-investing.html" class="blog-card">
+      <img src="blog-track-time.png" alt="Notebook with time tracking entries" class="blog-card-img" loading="lazy">
+      <div class="blog-card-body">
+        <div class="blog-card-date">April 8, 2026</div>
+        <h2 class="blog-card-title">How to Track the Time I Spend Investing</h2>
+        <p class="blog-card-excerpt">Most investors dramatically underestimate how much time they spend. Here's the system I use to track every hour and category, plus the tools that make it easy.</p>
+        <span class="blog-card-tag">Productivity</span>
+      </div>
+    </a>
+
+    <a href="blog-how-much-money-can-i-make-per-hour-investing.html" class="blog-card">
+      <img src="blog-money-per-hour.png" alt="Calculator next to stacks of coins" class="blog-card-img" loading="lazy">
+      <div class="blog-card-body">
+        <div class="blog-card-date">March 28, 2026</div>
+        <h2 class="blog-card-title">How Much Money Can I Make Per Hour Investing?</h2>
+        <p class="blog-card-excerpt">I break down the real math behind your investing hourly rate, with scenarios at different portfolio sizes. The numbers might surprise you.</p>
+        <span class="blog-card-tag">Returns</span>
+      </div>
+    </a>
+
+    <a href="blog-how-long-should-i-spend-investing.html" class="blog-card">
+      <img src="blog-time-investing.png" alt="Clock on desk next to laptop" class="blog-card-img" loading="lazy">
+      <div class="blog-card-body">
+        <div class="blog-card-date">March 18, 2026</div>
+        <h2 class="blog-card-title">How Long Should I Spend Investing?</h2>
+        <p class="blog-card-excerpt">For most retail investors, 1 to 3 hours per week is the sweet spot. Here's why spending more time usually doesn't improve your returns.</p>
+        <span class="blog-card-tag">Time Management</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="blog-footer">
+    <p>&copy; 2026 Investment Time Tracker. For educational purposes only, not financial advice.</p>
+  </div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+  const dropdown = document.getElementById('blogDropdown');
+  if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+});
+</script>
+</body>
+</html>

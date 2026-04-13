@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Track the Time I Spend Investing | Investment Time Tracker</title>
+<meta name="description" content="A practical guide to tracking your investing hours. I share the tools, methods, and systems I use to measure exactly how much time goes into managing my portfolio.">
+
+<!-- Social Preview / Open Graph -->
+<meta property="og:title" content="How to Track the Time I Spend Investing">
+<meta property="og:description" content="A practical guide to tracking your investing hours with real tools and systems.">
+<meta property="og:image" content="https://raw.githubusercontent.com/HarryH-Tech-2/time-spent-investing/main/blog-track-time.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@HarryHH1993">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%231a7a4c'/><stop offset='100%25' stop-color='%230ea5e9'/></linearGradient></defs><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50' y='62' text-anchor='middle' font-size='40' font-weight='bold' font-family='serif' fill='white'>$t</text></svg>">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;--surface:#ffffff;--surface2:#f7f7f8;--surface3:#efefef;
+  --border:#e2e2e6;--border-light:#d0d0d6;
+  --text:#1a1a1a;--text-muted:#666;--text-dim:#999;
+  --green:#0d8a50;--green-dim:#0d8a5012;--green-glow:#0d8a5030;
+  --red:#c92a4a;--red-dim:#c92a4a10;
+  --gold:#a07820;--gold-dim:#a0782010;
+  --accent:#4a3db8;--accent-dim:#4a3db812;
+  --shadow:0 1px 3px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.03);
+  --shadow-lg:0 4px 12px rgba(0,0,0,.05), 0 16px 40px rgba(0,0,0,.05);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 1.5rem}
+.navbar-inner{max-width:1100px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between}
+.navbar-brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.1rem;color:var(--text);text-decoration:none}
+.navbar-brand .brand-icon{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#1a7a4c,#0ea5e9);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;font-weight:900}
+.nav-links{display:flex;align-items:center;gap:.75rem}
+.x-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;text-decoration:none;background:#0f0f0f;color:#fff;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.x-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.x-btn svg{width:16px;height:16px}
+.bmc-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;border-radius:10px;text-decoration:none;background:#ffdd00;color:#000;font-weight:600;font-size:.82rem;transition:all .25s;box-shadow:0 2px 8px rgba(255,221,0,.3)}
+.bmc-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,221,0,.4)}
+.bmc-btn svg{width:18px;height:18px}
+
+.blog-dropdown{position:relative}
+.blog-dropdown-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:10px;text-decoration:none;background:var(--surface2);color:var(--text);font-weight:600;font-size:.82rem;transition:all .25s;border:1px solid var(--border);cursor:pointer}
+.blog-dropdown-btn:hover{background:var(--surface3);transform:translateY(-1px)}
+.blog-dropdown-btn svg{width:14px;height:14px;transition:transform .2s}
+.blog-dropdown.open .blog-dropdown-btn svg{transform:rotate(180deg)}
+.blog-dropdown-menu{display:none;position:absolute;top:calc(100% + 6px);right:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden;z-index:200}
+.blog-dropdown.open .blog-dropdown-menu{display:block}
+.blog-dropdown-menu a{display:block;padding:.75rem 1rem;text-decoration:none;color:var(--text);font-size:.82rem;transition:background .15s;border-bottom:1px solid var(--border)}
+.blog-dropdown-menu a:last-child{border-bottom:none}
+.blog-dropdown-menu a:hover{background:var(--surface2)}
+.blog-dropdown-menu a .blog-menu-title{font-weight:600;display:block}
+.blog-dropdown-menu a .blog-menu-date{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
+
+.blog-container{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem;position:relative;z-index:1}
+.blog-hero-img{width:100%;height:auto;border-radius:16px;margin-bottom:2rem;border:1px solid var(--border);box-shadow:var(--shadow)}
+.blog-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;font-size:.8rem;color:var(--text-muted);flex-wrap:wrap}
+.blog-meta a{color:var(--accent);text-decoration:none;font-weight:600}
+.blog-meta a:hover{text-decoration:underline}
+.blog-date{color:var(--text-dim)}
+.blog-tag{display:inline-block;padding:.2rem .6rem;border:1px solid var(--border);border-radius:100px;font-size:.65rem;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase}
+
+.blog-content h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.5rem;background:linear-gradient(135deg,#1a1a1a 40%,var(--text-muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.blog-content h2{font-size:1.35rem;font-weight:700;margin:2.5rem 0 1rem;color:var(--text);letter-spacing:-0.01em}
+.blog-content h3{font-size:1.1rem;font-weight:600;margin:2rem 0 .75rem;color:var(--text)}
+.blog-content p{font-size:1rem;line-height:1.75;color:var(--text);margin-bottom:1.25rem}
+.blog-content a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.blog-content a:hover{color:var(--green)}
+.blog-content ul,.blog-content ol{margin:1rem 0 1.5rem 1.5rem;line-height:1.75}
+.blog-content li{margin-bottom:.4rem;font-size:1rem}
+
+.key-summary{background:var(--green-dim);border:1px solid #0d8a5025;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem}
+.key-summary-title{font-size:.7rem;font-weight:700;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+.key-summary ul{margin:0 0 0 1.25rem;list-style:disc}
+.key-summary li{font-size:.9rem;color:var(--text);line-height:1.6;margin-bottom:.3rem}
+
+.faq-section{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+.faq-section h2{margin-top:0}
+.faq-item{margin-bottom:1.5rem}
+.faq-item h3{color:var(--accent);margin-bottom:.4rem;font-size:1rem}
+.faq-item p{margin-bottom:0;font-size:.95rem;color:var(--text-muted)}
+
+.back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--text-muted);text-decoration:none;margin-bottom:1.5rem}
+.back-link:hover{color:var(--accent)}
+.blog-footer{margin-top:3rem;padding:1.25rem 0;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-dim)}
+
+@media(max-width:700px){.blog-container{padding:1.25rem 1rem 3rem}.navbar-brand span{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <div class="brand-icon">$t</div>
+      <span>Investment Time Tracker</span>
+    </a>
+    <div class="nav-links">
+      <div class="blog-dropdown" id="blogDropdown">
+        <button class="blog-dropdown-btn" onclick="document.getElementById('blogDropdown').classList.toggle('open')">
+          Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="blog-dropdown-menu">
+          <a href="blog-how-long-should-i-spend-investing.html">
+            <span class="blog-menu-title">How Long Should I Spend Investing?</span>
+            <span class="blog-menu-date">March 18, 2026</span>
+          </a>
+          <a href="blog-how-much-money-can-i-make-per-hour-investing.html">
+            <span class="blog-menu-title">How Much Money Can I Make Per Hour Investing?</span>
+            <span class="blog-menu-date">March 28, 2026</span>
+          </a>
+          <a href="blog-how-to-track-time-spent-investing.html">
+            <span class="blog-menu-title">How to Track the Time I Spend Investing</span>
+            <span class="blog-menu-date">April 8, 2026</span>
+          </a>
+        </div>
+      </div>
+      <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener" class="x-btn" title="Follow on X">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://buymeacoffee.com/harryhh" target="_blank" rel="noopener" class="bmc-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+        Buy me a coffee
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="blog-container">
+  <a href="blog.html" class="back-link">&larr; All posts</a>
+
+  <article class="blog-content">
+    <h1>How to Track the Time I Spend Investing</h1>
+
+    <div class="blog-meta">
+      <span>By <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener">Harry</a></span>
+      <span class="blog-date">April 8, 2026</span>
+      <span class="blog-tag">Productivity</span>
+    </div>
+
+    <img src="blog-track-time.png" alt="Notebook with time tracking entries next to smartphone with investment app" class="blog-hero-img" loading="lazy">
+
+    <div class="key-summary">
+      <div class="key-summary-title">Key Takeaways</div>
+      <ul>
+        <li>Most investors dramatically underestimate how much time they spend on investing because they don't count the "invisible" hours like checking prices and reading news.</li>
+        <li>A simple timer app or spreadsheet is all you need to start tracking. The tool matters less than the habit.</li>
+        <li>Categorize your time into research, trading, monitoring, and learning so you can see where your hours actually go.</li>
+        <li>After tracking for one month, you'll have enough data to calculate your real hourly rate and make informed decisions about your investing approach.</li>
+      </ul>
+    </div>
+
+    <p>When I first tried to figure out how much time I was spending on investing, I guessed about 3 hours a week. After actually tracking it for a month, the real number was closer to 9. I was checking stock prices on my phone while making coffee, reading market analysis during lunch, and watching investing YouTube videos before bed. None of that felt like "investing time" in the moment, but it absolutely was.</p>
+
+    <p>If you want to know whether your active investing is actually worth it, the first step is knowing how many hours you're putting in. You cant calculate your <a href="blog-how-much-money-can-i-make-per-hour-investing.html">real hourly rate from investing</a> without an accurate time count. Here's exactly how I track mine.</p>
+
+    <h2>Why Should I Bother Tracking My Investing Time?</h2>
+
+    <p>The short answer is that you can't improve what you don't measure. But the longer answer is more interesting.</p>
+
+    <p>Tracking your investing time forces you to confront the true cost of active investing. According to a <a href="https://www.vanguard.com/pdf/ISGQVAA.pdf" target="_blank" rel="noopener">Vanguard research paper on advisor's alpha</a>, the behavioral coaching component of financial advice is worth about 1.5% in annual returns. A big part of that value comes from preventing investors from spending too much time monitoring markets and making emotional decisions. When you track your time, you become your own behavioral coach.</p>
+
+    <p>There's also a practical benefit: once you know where your investing hours go, you can cut the low-value activities and keep the ones that actually move the needle. Most people discover that 80% of their investing time produces roughly 0% of their returns.</p>
+
+    <h2>What Activities Should I Count as "Investing Time"?</h2>
+
+    <p>This is where most people go wrong. They only count the obvious stuff like placing trades or reading annual reports. But investing time includes a lot more then that. Here's what I track:</p>
+
+    <ul>
+      <li><strong>Research:</strong> Reading earnings reports, analyzing financial statements, watching company presentations, reading analyst notes</li>
+      <li><strong>Trading:</strong> Placing orders, managing positions, reviewing trade confirmations, adjusting stop losses</li>
+      <li><strong>Monitoring:</strong> Checking portfolio value, watching price movements, reading market news, scrolling financial social media</li>
+      <li><strong>Learning:</strong> Reading investing books, watching educational content, taking courses, listening to investing podcasts</li>
+      <li><strong>Admin:</strong> Tax preparation for investments, rebalancing, transferring funds, updating spreadsheets</li>
+    </ul>
+
+    <p>That monitoring category is the sneaky one. Every time you open your brokerage app to "just check" how things are going, that's investing time. Those 2-minute phone checks add up to hours per week for most people.</p>
+
+    <h3>What About Casual Conversations About the Market?</h3>
+
+    <p>I don't count casual conversations with friends about stocks unless I'm actively seeking investment advice or ideas. But if you're in a Discord server or subreddit specifically discussing trades and investment strategies, that counts. Use your judgment, but err on the side of including more rather than less. The whole point is to get an honest number.</p>
+
+    <h2>What Tools Can I Use to Track Investing Time?</h2>
+
+    <p>You don't need anything fancy. I've tried several approaches over the years and here's what actually works:</p>
+
+    <h3>Option 1: A Simple Timer App</h3>
+
+    <p><a href="https://toggl.com/track/" target="_blank" rel="noopener">Toggl Track</a> is what I used for the first six months. It's free, works on your phone and desktop, and lets you categorize time entries. Every time I did anything investing-related, I'd start the timer and tag it with a category. The key habit is starting the timer before you open your brokerage app or financial news site.</p>
+
+    <h3>Option 2: The Spreadsheet Method</h3>
+
+    <p>If you prefer something simpler, a basic spreadsheet works fine. I have a Google Sheet with four columns: date, activity, category, and minutes. At the end of each day, I spend 60 seconds logging what I did. It's not as precise as a timer, but it's close enough and easier to maintain.</p>
+
+    <h3>Option 3: The Weekly Estimate Method</h3>
+
+    <p>If you're not ready to track daily, start with a weekly estimate. Every Sunday, think back through the week and estimate how much time you spent on each investing category. This is the least accurate method, but it's infinitely better then not tracking at all. After a month of weekly estimates, you can plug your total hours into the <a href="index.html">Investment Time Tracker</a> to see your hourly rate.</p>
+
+    <h3>Option 3: Screen Time Data</h3>
+
+    <p>Here's a trick most people overlook. Both iOS and Android track your screen time by app. Check how much time you spent in your brokerage app, financial news apps, and investing-related websites. This won't capture everything (like reading a physical book about investing) but it gives you a solid baseline for the digital monitoring time that most people undercount.</p>
+
+    <h2>How Do I Build the Tracking Habit?</h2>
+
+    <p>The hardest part isn't choosing a tool. Its actually remembering to track consistently. Here's what worked for me:</p>
+
+    <ul>
+      <li><strong>Set a phone reminder</strong> for the end of each day to log your investing time</li>
+      <li><strong>Put a sticky note on your monitor</strong> that says "start timer" until the habit sticks</li>
+      <li><strong>Track for one month minimum</strong> before drawing any conclusions. A single week isn't enough data</li>
+      <li><strong>Don't judge yourself</strong> during the tracking period. The goal is honest data, not behavior change (that comes later)</li>
+    </ul>
+
+    <p>After about two weeks, tracking becomes automatic. It takes less than a minute per day and the insights are genuinely valuable.</p>
+
+    <h2>What Should I Do With the Data?</h2>
+
+    <p>Once you've tracked for a month, you'll have a clear picture of where your investing time goes. Here's how to use it:</p>
+
+    <p>First, calculate your total monthly hours and multiply by 12 to get an annual estimate. Then use that number to <a href="blog-how-much-money-can-i-make-per-hour-investing.html">figure out your hourly rate from investing</a>. Compare that to what you earn at your day job. If your investing hourly rate is significantly lower, it might be time to <a href="blog-how-long-should-i-spend-investing.html">rethink how much time you're spending</a>.</p>
+
+    <p>Second, look at the category breakdown. In my experience, most people find that monitoring (checking prices and reading news) takes up 40 to 60% of their total investing time. This is almost always the lowest-value category and the easiest to cut. A <a href="https://www.morningstar.com/lp/mind-the-gap" target="_blank" rel="noopener">Morningstar Mind the Gap study</a> found that investors who check their portfolios less frequently tend to earn higher returns because they make fewer emotional trades.</p>
+
+    <p>Third, set a time budget going forward. Decide how many hours per week you're willing to invest, allocate those hours to high-value activities, and stick to it. Treat your investing time like a limited resource, because it is.</p>
+
+    <h2>My Current System</h2>
+
+    <p>These days, I use a combination approach. I use Toggl Track for precise timing when I'm doing focused research sessions, and I do a quick mental review on Sundays to catch anything I missed. My monthly totals usually land between 6 and 10 hours, down from the 35+ hours I was spending when I started tracking years ago.</p>
+
+    <p>That reduction in time hasn't hurt my returns. If anything, spending less time has made me a better investor because I'm more deliberate about the time I do spend. I'm not making impulsive decisions based on whatever headline I saw five minutes ago. I'm making planned, research-backed decisions during my scheduled investing time.</p>
+
+    <p>And honestly, getting back 25 hours a month has been worth way more to me then any stock pick ever was.</p>
+
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <h3>How long should I track before drawing conclusions?</h3>
+        <p>One month is the minimum for useful data. Three months gives you a much better picture because it smooths out unusual weeks like earnings season or tax time. I'd recommend tracking for at least a full quarter before making any major changes to your investing approach.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does it matter if I track in minutes or hours?</h3>
+        <p>Track in minutes for daily entries and convert to hours for your monthly and annual totals. Minutes are more precise for those quick 5-minute phone checks that add up over time. If you track in hours, you'll round down and undercount the small sessions that actually make up a big chunk of total time.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Should I track time spent on crypto differently?</h3>
+        <p>I track crypto time in the same system but tag it separately. Crypto markets run 24/7, which tends to increase monitoring time significantly compared to traditional stock investing. If you're into crypto, your total investing hours might be higher than you expect, so tracking is even more important.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What if tracking makes me feel guilty about my investing time?</h3>
+        <p>That feeling is actually useful information. If seeing the real number makes you uncomfortable, it means your intuition already knows the time isn't being used optimally. Don't let guilt stop you from tracking. Instead, use it as motivation to be more intentional with the hours you spend. The goal isn't zero investing time. It's making sure every hour counts.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="blog-footer">
+    <p>&copy; 2026 Investment Time Tracker. For educational purposes only, not financial advice.</p>
+  </div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+  const dropdown = document.getElementById('blogDropdown');
+  if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+});
+</script>
+</body>
+</html>

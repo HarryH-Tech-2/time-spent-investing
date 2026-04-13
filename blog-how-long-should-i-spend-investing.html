@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Long Should I Spend Investing? | Investment Time Tracker</title>
+<meta name="description" content="Find out how much time you should realistically spend on active investing each week. A first-person breakdown of time vs returns and why less is often more.">
+
+<!-- Social Preview / Open Graph -->
+<meta property="og:title" content="How Long Should I Spend Investing?">
+<meta property="og:description" content="Find out how much time you should realistically spend on active investing each week.">
+<meta property="og:image" content="https://raw.githubusercontent.com/HarryH-Tech-2/time-spent-investing/main/blog-time-investing.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@HarryHH1993">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%231a7a4c'/><stop offset='100%25' stop-color='%230ea5e9'/></linearGradient></defs><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50' y='62' text-anchor='middle' font-size='40' font-weight='bold' font-family='serif' fill='white'>$t</text></svg>">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;--surface:#ffffff;--surface2:#f7f7f8;--surface3:#efefef;
+  --border:#e2e2e6;--border-light:#d0d0d6;
+  --text:#1a1a1a;--text-muted:#666;--text-dim:#999;
+  --green:#0d8a50;--green-dim:#0d8a5012;--green-glow:#0d8a5030;
+  --red:#c92a4a;--red-dim:#c92a4a10;
+  --gold:#a07820;--gold-dim:#a0782010;
+  --accent:#4a3db8;--accent-dim:#4a3db812;
+  --shadow:0 1px 3px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.03);
+  --shadow-lg:0 4px 12px rgba(0,0,0,.05), 0 16px 40px rgba(0,0,0,.05);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+
+/* Navbar */
+.navbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:0 1.5rem;
+}
+.navbar-inner{
+  max-width:1100px;margin:0 auto;height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.navbar-brand{
+  display:flex;align-items:center;gap:.6rem;
+  font-weight:800;font-size:1.1rem;color:var(--text);text-decoration:none;
+}
+.navbar-brand .brand-icon{
+  width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(135deg,#1a7a4c,#0ea5e9);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:.8rem;font-weight:900;
+}
+.nav-links{display:flex;align-items:center;gap:.75rem}
+.x-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:10px;text-decoration:none;
+  background:#0f0f0f;color:#fff;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+.x-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.x-btn svg{width:16px;height:16px}
+.bmc-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.45rem 1rem;border-radius:10px;text-decoration:none;
+  background:#ffdd00;color:#000;font-weight:600;font-size:.82rem;
+  transition:all .25s;box-shadow:0 2px 8px rgba(255,221,0,.3);
+}
+.bmc-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,221,0,.4)}
+.bmc-btn svg{width:18px;height:18px}
+
+/* Blog dropdown */
+.blog-dropdown{position:relative}
+.blog-dropdown-btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.45rem .9rem;border-radius:10px;text-decoration:none;
+  background:var(--surface2);color:var(--text);font-weight:600;font-size:.82rem;
+  transition:all .25s;border:1px solid var(--border);cursor:pointer;
+}
+.blog-dropdown-btn:hover{background:var(--surface3);transform:translateY(-1px)}
+.blog-dropdown-btn svg{width:14px;height:14px;transition:transform .2s}
+.blog-dropdown.open .blog-dropdown-btn svg{transform:rotate(180deg)}
+.blog-dropdown-menu{
+  display:none;position:absolute;top:calc(100% + 6px);right:0;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden;z-index:200;
+}
+.blog-dropdown.open .blog-dropdown-menu{display:block}
+.blog-dropdown-menu a{
+  display:block;padding:.75rem 1rem;text-decoration:none;color:var(--text);
+  font-size:.82rem;transition:background .15s;border-bottom:1px solid var(--border);
+}
+.blog-dropdown-menu a:last-child{border-bottom:none}
+.blog-dropdown-menu a:hover{background:var(--surface2)}
+.blog-dropdown-menu a .blog-menu-title{font-weight:600;display:block}
+.blog-dropdown-menu a .blog-menu-date{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
+
+/* Blog Layout */
+.blog-container{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem;position:relative;z-index:1}
+.blog-hero-img{
+  width:100%;height:auto;border-radius:16px;margin-bottom:2rem;
+  border:1px solid var(--border);box-shadow:var(--shadow);
+}
+.blog-meta{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;
+  font-size:.8rem;color:var(--text-muted);flex-wrap:wrap;
+}
+.blog-meta a{color:var(--accent);text-decoration:none;font-weight:600}
+.blog-meta a:hover{text-decoration:underline}
+.blog-date{color:var(--text-dim)}
+.blog-tag{
+  display:inline-block;padding:.2rem .6rem;border:1px solid var(--border);
+  border-radius:100px;font-size:.65rem;color:var(--text-dim);
+  letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* Blog Content */
+.blog-content h1{
+  font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;line-height:1.15;
+  letter-spacing:-0.02em;margin-bottom:1.5rem;
+  background:linear-gradient(135deg,#1a1a1a 40%,var(--text-muted));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.blog-content h2{
+  font-size:1.35rem;font-weight:700;margin:2.5rem 0 1rem;
+  color:var(--text);letter-spacing:-0.01em;
+}
+.blog-content h3{
+  font-size:1.1rem;font-weight:600;margin:2rem 0 .75rem;color:var(--text);
+}
+.blog-content p{
+  font-size:1rem;line-height:1.75;color:var(--text);margin-bottom:1.25rem;
+}
+.blog-content a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.blog-content a:hover{color:var(--green)}
+.blog-content ul,.blog-content ol{
+  margin:1rem 0 1.5rem 1.5rem;line-height:1.75;
+}
+.blog-content li{margin-bottom:.4rem;font-size:1rem}
+.blog-content strong{font-weight:700}
+
+/* Key Summary */
+.key-summary{
+  background:var(--green-dim);border:1px solid #0d8a5025;border-radius:12px;
+  padding:1.25rem 1.5rem;margin-bottom:2rem;
+}
+.key-summary-title{
+  font-size:.7rem;font-weight:700;color:var(--green);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;
+}
+.key-summary ul{margin:0 0 0 1.25rem;list-style:disc}
+.key-summary li{font-size:.9rem;color:var(--text);line-height:1.6;margin-bottom:.3rem}
+
+/* FAQ */
+.faq-section{
+  margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);
+}
+.faq-section h2{margin-top:0}
+.faq-item{margin-bottom:1.5rem}
+.faq-item h3{color:var(--accent);margin-bottom:.4rem;font-size:1rem}
+.faq-item p{margin-bottom:0;font-size:.95rem;color:var(--text-muted)}
+
+/* Back link */
+.back-link{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.85rem;color:var(--text-muted);text-decoration:none;margin-bottom:1.5rem;
+}
+.back-link:hover{color:var(--accent)}
+
+/* Footer */
+.blog-footer{
+  margin-top:3rem;padding:1.25rem 0;border-top:1px solid var(--border);
+  text-align:center;font-size:.75rem;color:var(--text-dim);
+}
+
+@media(max-width:700px){
+  .blog-container{padding:1.25rem 1rem 3rem}
+  .navbar-brand span{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <div class="brand-icon">$t</div>
+      <span>Investment Time Tracker</span>
+    </a>
+    <div class="nav-links">
+      <div class="blog-dropdown" id="blogDropdown">
+        <button class="blog-dropdown-btn" onclick="document.getElementById('blogDropdown').classList.toggle('open')">
+          Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="blog-dropdown-menu">
+          <a href="blog-how-long-should-i-spend-investing.html">
+            <span class="blog-menu-title">How Long Should I Spend Investing?</span>
+            <span class="blog-menu-date">March 18, 2026</span>
+          </a>
+          <a href="blog-how-much-money-can-i-make-per-hour-investing.html">
+            <span class="blog-menu-title">How Much Money Can I Make Per Hour Investing?</span>
+            <span class="blog-menu-date">March 28, 2026</span>
+          </a>
+          <a href="blog-how-to-track-time-spent-investing.html">
+            <span class="blog-menu-title">How to Track the Time I Spend Investing</span>
+            <span class="blog-menu-date">April 8, 2026</span>
+          </a>
+        </div>
+      </div>
+      <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener" class="x-btn" title="Follow on X">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://buymeacoffee.com/harryhh" target="_blank" rel="noopener" class="bmc-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+        Buy me a coffee
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="blog-container">
+  <a href="blog.html" class="back-link">&larr; All posts</a>
+
+  <article class="blog-content">
+    <h1>How Long Should I Spend Investing?</h1>
+
+    <div class="blog-meta">
+      <span>By <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener">Harry</a></span>
+      <span class="blog-date">March 18, 2026</span>
+      <span class="blog-tag">Time Management</span>
+    </div>
+
+    <img src="blog-time-investing.png" alt="Clock on desk next to laptop showing stock charts" class="blog-hero-img" loading="lazy">
+
+    <div class="key-summary">
+      <div class="key-summary-title">Key Takeaways</div>
+      <ul>
+        <li>Most retail investors spend far more time than they need to on active investing, and it rarely improves their returns.</li>
+        <li>For the majority of people, 1 to 3 hours per week is the sweet spot for managing a portfolio.</li>
+        <li>Passive strategies require almost no time and historically outperform most active investors anyway.</li>
+        <li>The real question isn't how long you should invest, its whether your time is actually generating better returns than an index fund.</li>
+      </ul>
+    </div>
+
+    <p>I've been actively investing for years now, and one of the biggest lessons I've learned has nothing to do with picking the right stocks. Its about time. Specifically, how much of it I was wasting.</p>
+
+    <p>When I first started, I was spending 10 or 15 hours a week reading earnings reports, watching market analysis on YouTube, and scrolling through investing subreddits. I thought more time meant better decisions. It didn't. And I think most people who get serious about investing fall into the same trap.</p>
+
+    <h2>Is There a "Right" Amount of Time to Spend on Investing?</h2>
+
+    <p>There's no universal answer here, but I'll give you my honest take: if you're a retail investor managing your own portfolio, you probably don't need more than 1 to 3 hours per week. That might sound low if you're used to spending your evenings glued to TradingView, but hear me out.</p>
+
+    <p>A <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/" target="_blank" rel="noopener">2024 SPIVA report from S&P Global</a> found that over 90% of actively managed large-cap funds underperformed the S&P 500 over a 15-year period. These are professional fund managers with teams of analysts, and they still can't beat the index consistently. So the idea that you or I will do better by spending more hours researching is, frankly, a bit arrogant.</p>
+
+    <h2>What Should Those 1 to 3 Hours Actually Look Like?</h2>
+
+    <p>If you're going to spend time on investing, you want to make sure its high-quality time. Here's roughly how I break down my weekly investing time now:</p>
+
+    <ul>
+      <li><strong>30 minutes reviewing portfolio performance</strong> and checking if anything has fundamentally changed with my holdings</li>
+      <li><strong>30 minutes reading macro news</strong> from sources like the Financial Times or Bloomberg, not Reddit hot takes</li>
+      <li><strong>30 to 60 minutes on deeper research</strong> if I'm considering a new position or rebalancing</li>
+      <li><strong>15 minutes on admin</strong> like checking dividends, tax lots, or rebalancing allocations</li>
+    </ul>
+
+    <p>That's it. The rest of my time is better spent on my career, side projects, or honestly just living my life. I built <a href="index.html">this investment time tracker</a> specifically because I wanted to see whether the hours I was putting in were actually worth it in dollar terms.</p>
+
+    <h3>What If I Enjoy Spending More Time on It?</h3>
+
+    <p>Look, if investing is genuinely your hobby and you enjoy the process of researching companies, reading 10-K filings, and building financial models, then go for it. I'm not saying you shouldn't. But be honest with yourself about whether that time is a hobby or a strategy. Because if you're treating it as a strategy, you need to measure whether its actually working.</p>
+
+    <p>I know people who spend 20 hours a week on investing and underperform someone who just puts money into a total market index fund once a month. That's not a strategy problem. That's a time allocation problem.</p>
+
+    <h2>Does More Time Equal Better Returns?</h2>
+
+    <p>This is the question everyone dances around, and the answer is almost always no. Research from <a href="https://www.dalbar.com/QAIB/Index" target="_blank" rel="noopener">Dalbar's Quantitative Analysis of Investor Behavior</a> consistently shows that the average investor underperforms the market, and one of the primary reasons is overtrading. More time watching the market leads to more emotional decisions, which leads to buying high and selling low.</p>
+
+    <p>There's actually a strong argument that spending less time produces better results. The <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=219228" target="_blank" rel="noopener">famous study by Barber and Odean</a> found that the most active traders earned the lowest net returns. The investors who traded the least outperformed by a significant margin.</p>
+
+    <h3>When Does More Time Actually Help?</h3>
+
+    <p>There are some situations where more time is justified. If you're a value investor doing deep fundamental analysis on a small number of companies, then yes, spending 5 to 8 hours researching a single company before taking a concentrated position makes sense. Warren Buffett famously reads for 5 to 6 hours a day, but he's managing billions and has been doing this for 70 years.</p>
+
+    <p>For the rest of us, the diminishing returns kick in fast. You probably learn 80% of what you need to know about a stock in the first hour of research. The next 5 hours might only add another 10% of useful insight.</p>
+
+    <h2>How to Know If You're Spending Too Much Time</h2>
+
+    <p>Here's a simple test I use: <a href="blog-how-much-money-can-i-make-per-hour-investing.html">calculate your effective hourly rate from investing</a>. Take your total investment returns over a period, subtract what you would have earned from a passive index fund, and divide by the hours you spent. If that number is negative, or lower than minimum wage, you're spending too much time.</p>
+
+    <p>I've built a free tool that does exactly this calculation. You can <a href="index.html">try the Investment Time Tracker here</a> and see how your hourly rate from active investing compares to simply buying index funds. The results are often sobering.</p>
+
+    <h3>What About Tracking Your Investing Time?</h3>
+
+    <p>One thing that really helped me was actually <a href="blog-how-to-track-time-spent-investing.html">tracking how many hours I spent on investing activities</a>. Most people have no idea how much time they're really putting in because it doesn't feel like "work." Checking your phone for stock prices while eating breakfast, reading an investing newsletter during lunch, watching market wrap-up videos before bed. It all adds up.</p>
+
+    <p>When I started tracking, I realized I was spending nearly double what I thought. That was a wake-up call.</p>
+
+    <h2>My Honest Recommendation</h2>
+
+    <p>If you're managing a portfolio under $500,000 and you're not a professional, here's what I think you should do. Set aside 1 to 2 hours per week maximum for active investing. Use the rest of your financial energy on increasing your income, reducing expenses, and automating your investments into low-cost index funds.</p>
+
+    <p>The best investment most people can make isn't in the stock market. It's in their own skills, career, and earning potential. Time spent getting a raise or starting a side business will almost certainly generate a higher return per hour then time spent trying to pick winning stocks.</p>
+
+    <p>That's not a popular opinion in investing communities, but I genuinely believe it's the truth.</p>
+
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <h3>How many hours a week do professional traders work?</h3>
+        <p>Professional day traders typically work 40 to 60 hours a week, including pre-market preparation, active trading hours, and post-market analysis. But they have dedicated infrastructure, real-time data feeds, and institutional advantages that retail investors don't have. Comparing yourself to a pro trader is like comparing a weekend jogger to a marathon runner.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I invest successfully with just 30 minutes a month?</h3>
+        <p>Absolutely. If you're using a passive strategy like dollar-cost averaging into index funds, 30 minutes a month is more than enough. You'd set up automatic contributions and check in occasionally to rebalance. This approach has historically beaten most active investors over long time horizons.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is it worth paying a financial advisor to save time?</h3>
+        <p>It depends on your situation. If you have a complex financial picture with multiple accounts, tax considerations, and estate planning needs, a fee-only financial advisor can save you significant time and potentially improve your outcomes. For simpler situations, a robo-advisor or target-date fund achieves similar results for a fraction of the cost.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does reading investing books count as "time spent investing"?</h3>
+        <p>I'd count it partially. Reading foundational investing books is education that pays dividends forever. But if you're reading your fifth book on technical analysis hoping to find an edge, that time might be better spent elsewhere. Learning has diminishing returns too.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="blog-footer">
+    <p>&copy; 2026 Investment Time Tracker. For educational purposes only, not financial advice.</p>
+  </div>
+</div>
+
+<script>
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  const dropdown = document.getElementById('blogDropdown');
+  if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+});
+</script>
+</body>
+</html>
