@@ -403,6 +403,51 @@ body{
 .footer-legal{display:flex;gap:1rem}
 @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
 
+/* Animated gradient hero backdrop — layered radial blobs, ocean/brand palette */
+.gradient-hero{
+  position:absolute;top:0;left:0;right:0;height:480px;
+  overflow:hidden;pointer-events:none;z-index:0;
+  isolation:isolate;
+}
+.gradient-hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:120px;
+  background:linear-gradient(to top,var(--bg),transparent);
+  z-index:1;
+}
+.gradient-hero .blob{
+  position:absolute;border-radius:50%;
+  filter:blur(90px);opacity:0.45;
+  mix-blend-mode:normal;
+  will-change:transform;
+}
+.gradient-hero .blob-1{
+  width:600px;height:600px;top:-180px;left:-10%;
+  background:radial-gradient(circle,#0ea5e9,transparent 70%);
+  animation:drift1 18s ease-in-out infinite alternate;
+}
+.gradient-hero .blob-2{
+  width:500px;height:500px;top:-120px;right:-5%;
+  background:radial-gradient(circle,#1a7a4c,transparent 70%);
+  animation:drift2 22s ease-in-out infinite alternate;
+}
+.gradient-hero .blob-3{
+  width:450px;height:450px;top:60px;left:30%;
+  background:radial-gradient(circle,#a78bfa,transparent 70%);
+  animation:drift3 20s ease-in-out infinite alternate;
+}
+.gradient-hero .blob-4{
+  width:400px;height:400px;top:-60px;left:55%;
+  background:radial-gradient(circle,#06b6d4,transparent 70%);
+  animation:drift4 16s ease-in-out infinite alternate;
+}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(80px,40px) scale(1.1)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1)}to{transform:translate(-60px,50px) scale(1.05)}}
+@keyframes drift3{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,-30px) scale(1.15)}}
+@keyframes drift4{from{transform:translate(0,0) scale(1)}to{transform:translate(50px,35px) scale(0.95)}}
+@media(prefers-reduced-motion:reduce){
+  .gradient-hero .blob{animation:none!important}
+}
+
 /* Hidden */
 .hidden{display:none}
 
@@ -458,6 +503,14 @@ body{
     </div>
   </div>
 </nav>
+
+<!-- Animated gradient hero backdrop -->
+<div class="gradient-hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
 
 <div class="container">
   <header class="header">

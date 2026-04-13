@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeshGradient — Usage Examples</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh}
+.page{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+h1{font-size:1.6rem;font-weight:800;margin-bottom:.25rem}
+p.sub{font-size:.85rem;color:#888;margin-bottom:2.5rem}
+h2{font-size:1rem;font-weight:700;margin:2.5rem 0 .5rem;color:#ccc}
+
+/* Example panels */
+.example{
+  position:relative;overflow:hidden;
+  border-radius:20px;margin-bottom:1.5rem;
+  min-height:300px;
+}
+.example .content{
+  position:relative;z-index:1;
+  padding:2.5rem 2rem;
+}
+.example h3{font-size:1.8rem;font-weight:800;margin-bottom:.5rem}
+.example p{font-size:.9rem;opacity:.7;max-width:500px}
+
+/* Code block */
+.code{
+  background:#111;border:1px solid #222;border-radius:12px;
+  padding:1.25rem 1.5rem;margin-bottom:1rem;
+  font-family:'Consolas','Monaco',monospace;font-size:.8rem;
+  color:#a5f3fc;line-height:1.6;overflow-x:auto;white-space:pre;
+}
+.code .comment{color:#555}
+.code .str{color:#fda4af}
+.code .num{color:#fde047}
+.code .key{color:#a78bfa}
+
+/* API reference table */
+table{width:100%;border-collapse:collapse;margin-bottom:2rem;font-size:.82rem}
+th{text-align:left;padding:.6rem .75rem;border-bottom:2px solid #222;color:#888;font-weight:600;text-transform:uppercase;font-size:.65rem;letter-spacing:.08em}
+td{padding:.6rem .75rem;border-bottom:1px solid #1a1a1a;vertical-align:top}
+td:first-child{font-family:monospace;color:#a5f3fc;white-space:nowrap}
+td:nth-child(2){color:#888}
+td:nth-child(3){font-family:monospace;color:#fde047}
+td:last-child{color:#aaa}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <h1>MeshGradient</h1>
+  <p class="sub">Drop-in animated mesh gradient for any container. One import, one line to create.</p>
+
+  <!-- ───────── EXAMPLE 1: Simplest usage ───────── -->
+  <h2>1. Simplest usage — just a palette name</h2>
+  <div class="code"><span class="comment">// Import the module</span>
+import { MeshGradient } from <span class="str">'./mesh-gradient.js'</span>;
+
+<span class="comment">// Attach to any container — that's it</span>
+const gradient = new MeshGradient(<span class="str">'#hero'</span>, {
+  <span class="key">palette</span>: <span class="str">'aurora'</span>,
+});</div>
+  <div class="example" id="ex-simple">
+    <div class="content">
+      <h3>Hello world</h3>
+      <p>Just set a palette name. Everything else uses sensible defaults.</p>
+    </div>
+  </div>
+
+  <!-- ───────── EXAMPLE 2: Tuned settings ───────── -->
+  <h2>2. Tuned settings — slow, broad, subtle</h2>
+  <div class="code">new MeshGradient(<span class="str">'#hero'</span>, {
+  <span class="key">palette</span>:   <span class="str">'brand'</span>,
+  <span class="key">speed</span>:     <span class="num">0.03</span>,     <span class="comment">// barely moving</span>
+  <span class="key">zoom</span>:      <span class="num">0.4</span>,      <span class="comment">// very broad color washes</span>
+  <span class="key">intensity</span>: <span class="num">0.25</span>,     <span class="comment">// subtle, not overpowering</span>
+  <span class="key">octaves</span>:   <span class="num">1</span>,        <span class="comment">// smooth, no detail layers</span>
+});</div>
+  <div class="example" id="ex-slow">
+    <div class="content">
+      <h3>Ambient background</h3>
+      <p>Low speed + low intensity = a gradient that breathes without distracting from content.</p>
+    </div>
+  </div>
+
+  <!-- ───────── EXAMPLE 3: Turbulent / detailed ───────── -->
+  <h2>3. Turbulent — fast, detailed, vivid</h2>
+  <div class="code">new MeshGradient(<span class="str">'#hero'</span>, {
+  <span class="key">palette</span>:   <span class="str">'synthwave'</span>,
+  <span class="key">speed</span>:     <span class="num">0.12</span>,     <span class="comment">// energetic</span>
+  <span class="key">zoom</span>:      <span class="num">1.8</span>,      <span class="comment">// tight swirling patterns</span>
+  <span class="key">intensity</span>: <span class="num">0.5</span>,      <span class="comment">// vivid colors</span>
+  <span class="key">octaves</span>:   <span class="num">3</span>,        <span class="comment">// layered detail</span>
+});</div>
+  <div class="example" id="ex-turb">
+    <div class="content">
+      <h3>Plasma energy</h3>
+      <p>High octaves add fractal detail. Combined with high zoom and speed, you get dense, swirling motion.</p>
+    </div>
+  </div>
+
+  <!-- ───────── EXAMPLE 4: Light mode ───────── -->
+  <h2>4. Light mode — white background</h2>
+  <div class="code">new MeshGradient(<span class="str">'#hero'</span>, {
+  <span class="key">palette</span>:   <span class="str">'brand-light'</span>,
+  <span class="key">speed</span>:     <span class="num">0.04</span>,
+  <span class="key">intensity</span>: <span class="num">0.4</span>,
+});</div>
+  <div class="example" id="ex-light" style="border:1px solid #222">
+    <div class="content">
+      <h3 style="color:#1a1a1a">Light mode</h3>
+      <p style="color:#444">Light palettes use tint blending instead of additive, so colors stay true on white.</p>
+    </div>
+  </div>
+
+  <!-- ───────── EXAMPLE 5: Custom palette ───────── -->
+  <h2>5. Custom palette — bring your own colors</h2>
+  <div class="code">new MeshGradient(<span class="str">'#hero'</span>, {
+  <span class="key">palette</span>: {
+    <span class="key">bg</span>: [<span class="num">5</span>, <span class="num">5</span>, <span class="num">20</span>],
+    <span class="key">colors</span>: [
+      [<span class="num">255</span>, <span class="num">50</span>, <span class="num">80</span>],    <span class="comment">// red</span>
+      [<span class="num">255</span>, <span class="num">180</span>, <span class="num">0</span>],    <span class="comment">// amber</span>
+      [<span class="num">0</span>, <span class="num">200</span>, <span class="num">255</span>],    <span class="comment">// electric blue</span>
+      [<span class="num">180</span>, <span class="num">0</span>, <span class="num">255</span>],    <span class="comment">// purple</span>
+    ],
+    <span class="key">light</span>: false,          <span class="comment">// dark bg → additive blend</span>
+  },
+  <span class="key">speed</span>:     <span class="num">0.07</span>,
+  <span class="key">zoom</span>:      <span class="num">0.8</span>,
+  <span class="key">intensity</span>: <span class="num">0.45</span>,
+  <span class="key">octaves</span>:   <span class="num">2</span>,
+});</div>
+  <div class="example" id="ex-custom">
+    <div class="content">
+      <h3>Custom colors</h3>
+      <p>Pass any RGB arrays. Use <code>light: true</code> for white/light backgrounds, <code>false</code> for dark.</p>
+    </div>
+  </div>
+
+  <!-- ───────── EXAMPLE 6: Cleanup ───────── -->
+  <h2>6. Cleanup</h2>
+  <div class="code"><span class="comment">// Stop animation and remove the canvas</span>
+gradient.destroy();</div>
+
+  <!-- ───────── API Reference ───────── -->
+  <h2>API Reference</h2>
+  <table>
+    <thead><tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>palette</td><td>string | object</td><td>'brand'</td><td>Built-in name or custom <code>{ bg, colors, light }</code> object</td></tr>
+      <tr><td>speed</td><td>number</td><td>0.06</td><td>Animation speed. 0.03 = glacial, 0.06 = gentle, 0.15 = rapid</td></tr>
+      <tr><td>zoom</td><td>number</td><td>0.6</td><td>Noise scale. 0.3 = huge soft washes, 1.0 = medium, 2.5 = tight swirls</td></tr>
+      <tr><td>intensity</td><td>number</td><td>0.4</td><td>Color strength. 0.2 = barely there, 0.4 = balanced, 0.6 = vivid</td></tr>
+      <tr><td>octaves</td><td>1 | 2 | 3</td><td>1</td><td>Noise layers. 1 = smooth, 2 = some texture, 3 = turbulent detail</td></tr>
+      <tr><td>seed</td><td>number</td><td>42</td><td>Random seed. Same seed = same pattern across loads</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Built-in palettes</h2>
+  <table>
+    <thead><tr><th>Name</th><th>Background</th><th>Vibe</th></tr></thead>
+    <tbody>
+      <tr><td>'brand'</td><td>Dark navy</td><td>Green, blue, violet, cyan — your site's colors</td></tr>
+      <tr><td>'aurora'</td><td>Dark navy</td><td>Sky blue, violet, pink, rose — cool dawn</td></tr>
+      <tr><td>'sunset'</td><td>Deep indigo</td><td>Orange, pink, purple — warm dramatic</td></tr>
+      <tr><td>'ocean'</td><td>Slate</td><td>Blue, cyan, teal — corporate but alive</td></tr>
+      <tr><td>'synthwave'</td><td>Dark navy</td><td>Pink, indigo, cyan — retro-futurist</td></tr>
+      <tr><td>'forest'</td><td>Dark green</td><td>Greens, gold — earthy, unusual</td></tr>
+      <tr><td>'mono-violet'</td><td>Deep navy</td><td>Purple shades — single-hue, sophisticated</td></tr>
+      <tr><td>'citrus'</td><td>Warm white</td><td>Yellow, orange, pink — bright, editorial</td></tr>
+      <tr><td>'brand-light'</td><td>White</td><td>Brand colors on white — for light-mode sites</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="module">
+import { MeshGradient } from './mesh-gradient.js';
+
+// 1. Simple
+new MeshGradient('#ex-simple', { palette: 'aurora' });
+
+// 2. Slow ambient
+new MeshGradient('#ex-slow', {
+  palette: 'brand',
+  speed: 0.03, zoom: 0.4, intensity: 0.25, octaves: 1,
+});
+
+// 3. Turbulent
+new MeshGradient('#ex-turb', {
+  palette: 'synthwave',
+  speed: 0.12, zoom: 1.8, intensity: 0.5, octaves: 3,
+});
+
+// 4. Light mode
+new MeshGradient('#ex-light', {
+  palette: 'brand-light',
+  speed: 0.04, intensity: 0.4,
+});
+
+// 5. Custom palette
+new MeshGradient('#ex-custom', {
+  palette: {
+    bg: [5, 5, 20],
+    colors: [[255,50,80],[255,180,0],[0,200,255],[180,0,255]],
+    light: false,
+  },
+  speed: 0.07, zoom: 0.8, intensity: 0.45, octaves: 2,
+});
+</script>
+
+</body>
+</html>
