@@ -3,15 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog | Investment Time Tracker</title>
-<meta name="description" content="Articles about investing time management, hourly returns, and tracking your portfolio hours. Practical insights for retail investors.">
-
-<meta property="og:title" content="Blog | Investment Time Tracker">
-<meta property="og:description" content="Articles about investing time management, hourly returns, and tracking your portfolio hours.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@HarryHH1993">
-
+<title>Privacy Policy | Investment Time Tracker</title>
+<meta name="description" content="Privacy Policy for the Investment Time Tracker website and tool.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%231a7a4c'/><stop offset='100%25' stop-color='%230ea5e9'/></linearGradient></defs><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50' y='62' text-anchor='middle' font-size='40' font-weight='bold' font-family='serif' fill='white'>$t</text></svg>">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -19,10 +12,8 @@
   --bg:#ffffff;--surface:#ffffff;--surface2:#f7f7f8;--surface3:#efefef;
   --border:#e2e2e6;--border-light:#d0d0d6;
   --text:#1a1a1a;--text-muted:#666;--text-dim:#999;
-  --green:#0d8a50;--green-dim:#0d8a5012;--green-glow:#0d8a5030;
-  --red:#c92a4a;--red-dim:#c92a4a10;
-  --gold:#a07820;--gold-dim:#a0782010;
-  --accent:#4a3db8;--accent-dim:#4a3db812;
+  --green:#0d8a50;--green-dim:#0d8a5012;
+  --accent:#4a3db8;
   --shadow:0 1px 3px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.03);
   --shadow-lg:0 4px 12px rgba(0,0,0,.05), 0 16px 40px rgba(0,0,0,.05);
 }
@@ -41,61 +32,39 @@ body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-ser
   display:inline-flex;align-items:center;gap:.4rem;
   padding:.45rem .9rem;border-radius:10px;text-decoration:none;
   background:var(--surface2);color:var(--text);font-weight:600;font-size:.82rem;
-  transition:all .25s;border:1px solid var(--border);
-  font-family:Arial,Helvetica,sans-serif;
+  transition:all .25s;border:1px solid var(--border);font-family:Arial,Helvetica,sans-serif;
 }
 .nav-link:hover{background:var(--surface3);transform:translateY(-1px)}
 .blog-dropdown{position:relative}
 .blog-dropdown .nav-link svg{width:14px;height:14px;transition:transform .2s}
 .blog-dropdown:hover .nav-link svg{transform:rotate(180deg)}
-.blog-dropdown-menu{
-  display:none;position:absolute;top:100%;right:0;padding-top:6px;z-index:200;
-}
+.blog-dropdown-menu{display:none;position:absolute;top:100%;right:0;padding-top:6px;z-index:200}
 .blog-dropdown:hover .blog-dropdown-menu{display:block}
-.blog-dropdown-menu-inner{
-  background:var(--surface);border:1px solid var(--border);border-radius:12px;
-  box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden;
-}
-.blog-dropdown-menu-inner a{
-  display:block;padding:.75rem 1rem;text-decoration:none;color:var(--text);
-  font-size:.82rem;transition:background .15s;border-bottom:1px solid var(--border);
-}
+.blog-dropdown-menu-inner{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden}
+.blog-dropdown-menu-inner a{display:block;padding:.75rem 1rem;text-decoration:none;color:var(--text);font-size:.82rem;transition:background .15s;border-bottom:1px solid var(--border)}
 .blog-dropdown-menu-inner a:last-child{border-bottom:none}
 .blog-dropdown-menu-inner a:hover{background:var(--surface2)}
 .blog-dropdown-menu-inner a .blog-menu-title{font-weight:600;display:block}
 .blog-dropdown-menu-inner a .blog-menu-date{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
 
-.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem;position:relative;z-index:1}
-
+.page-container{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem}
 .page-header{text-align:center;padding:2.5rem 0 2rem;position:relative}
 .page-header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
 .page-header h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-0.02em;line-height:1.1;background:linear-gradient(135deg,#1a1a1a 40%,var(--text-muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.page-header p{color:var(--text-muted);margin-top:.75rem;font-size:.95rem}
+.page-header p{color:var(--text-dim);margin-top:.75rem;font-size:.85rem}
 
-.blog-grid{display:flex;flex-direction:column;gap:1.5rem}
-.blog-card{
-  display:grid;grid-template-columns:280px 1fr;gap:1.5rem;
-  background:var(--surface);border:1px solid var(--border);border-radius:16px;
-  overflow:hidden;transition:border-color .3s, box-shadow .3s, transform .3s;
-  box-shadow:var(--shadow);text-decoration:none;color:inherit;
-}
-.blog-card:hover{border-color:var(--border-light);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
-.blog-card-img{width:100%;height:100%;object-fit:cover;min-height:200px}
-.blog-card-body{padding:1.5rem 1.5rem 1.5rem 0;display:flex;flex-direction:column;justify-content:center}
-.blog-card-date{font-size:.7rem;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem}
-.blog-card-title{font-size:1.25rem;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:.5rem}
-.blog-card-excerpt{font-size:.88rem;color:var(--text-muted);line-height:1.6}
-.blog-card-tag{display:inline-block;margin-top:.75rem;padding:.2rem .6rem;border:1px solid var(--border);border-radius:100px;font-size:.6rem;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase}
+.legal-content h2{font-size:1.2rem;font-weight:700;margin:2rem 0 .75rem;color:var(--text)}
+.legal-content p{font-size:.92rem;line-height:1.75;color:var(--text-muted);margin-bottom:1rem}
+.legal-content ul{margin:1rem 0 1.5rem 1.5rem;line-height:1.75}
+.legal-content li{margin-bottom:.3rem;font-size:.92rem;color:var(--text-muted)}
+.legal-content a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
 
-.blog-footer{margin-top:3rem;padding:1.25rem 0;border-top:1px solid var(--border);text-align:center;font-size:.75rem;color:var(--text-dim)}
+.page-footer{margin-top:3rem;padding:1.25rem 0;border-top:1px solid var(--border);text-align:center}
+.page-footer p{font-size:.75rem;color:var(--text-dim)}
+.page-footer a{color:var(--text-dim);text-decoration:none;margin:0 .5rem}
+.page-footer a:hover{color:var(--accent)}
 
-@media(max-width:700px){
-  .container{padding:1.25rem 1rem 3rem}
-  .blog-card{grid-template-columns:1fr}
-  .blog-card-img{max-height:200px}
-  .blog-card-body{padding:1.25rem}
-  .navbar-brand span{display:none}
-}
+@media(max-width:700px){.page-container{padding:1.25rem 1rem 3rem}.navbar-brand span{display:none}}
 </style>
 </head>
 <body>
@@ -137,47 +106,60 @@ body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-ser
   </div>
 </nav>
 
-<div class="container">
+<div class="page-container">
   <header class="page-header">
-    <h1>Blog</h1>
-    <p>Practical insights on investing time, returns per hour, and smarter portfolio management</p>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: March 18, 2026</p>
   </header>
 
-  <div class="blog-grid">
-    <a href="blog-how-to-track-time-spent-investing.html" class="blog-card">
-      <img src="blog-track-time.png" alt="Notebook with time tracking entries" class="blog-card-img" loading="lazy">
-      <div class="blog-card-body">
-        <div class="blog-card-date">April 8, 2026</div>
-        <h2 class="blog-card-title">How to Track the Time I Spend Investing</h2>
-        <p class="blog-card-excerpt">Most investors dramatically underestimate how much time they spend. Here's the system I use to track every hour and category, plus the tools that make it easy.</p>
-        <span class="blog-card-tag">Productivity</span>
-      </div>
-    </a>
+  <div class="legal-content">
+    <h2>1. Overview</h2>
+    <p>Investment Time Tracker ("we", "our", "the Service") is committed to protecting your privacy. This Privacy Policy explains what information we collect, how we use it, and your rights regarding that information.</p>
+    <p>The short version: we collect almost nothing. The calculator runs entirely in your browser, and we don't store your financial data.</p>
 
-    <a href="blog-how-much-money-can-i-make-per-hour-investing.html" class="blog-card">
-      <img src="blog-money-per-hour.png" alt="Calculator next to stacks of coins" class="blog-card-img" loading="lazy">
-      <div class="blog-card-body">
-        <div class="blog-card-date">March 28, 2026</div>
-        <h2 class="blog-card-title">How Much Money Can I Make Per Hour Investing?</h2>
-        <p class="blog-card-excerpt">I break down the real math behind your investing hourly rate, with scenarios at different portfolio sizes. The numbers might surprise you.</p>
-        <span class="blog-card-tag">Returns</span>
-      </div>
-    </a>
+    <h2>2. Information We Do Not Collect</h2>
+    <p>The Investment Time Tracker calculator processes all data locally in your browser. We do not collect, store, transmit, or have access to:</p>
+    <ul>
+      <li>The numbers you enter into the calculator (hours, investment amounts, returns)</li>
+      <li>Your calculation results</li>
+      <li>Your financial information or portfolio details</li>
+      <li>Personal identification information through the calculator</li>
+    </ul>
 
-    <a href="blog-how-long-should-i-spend-investing.html" class="blog-card">
-      <img src="blog-time-investing.png" alt="Clock on desk next to laptop" class="blog-card-img" loading="lazy">
-      <div class="blog-card-body">
-        <div class="blog-card-date">March 18, 2026</div>
-        <h2 class="blog-card-title">How Long Should I Spend Investing?</h2>
-        <p class="blog-card-excerpt">For most retail investors, 1 to 3 hours per week is the sweet spot. Here's why spending more time usually doesn't improve your returns.</p>
-        <span class="blog-card-tag">Time Management</span>
-      </div>
-    </a>
+    <h2>3. Information We May Collect</h2>
+    <p>If the site is hosted on a platform that provides basic analytics (such as GitHub Pages), the following standard web server information may be collected automatically:</p>
+    <ul>
+      <li>IP address (anonymized where possible)</li>
+      <li>Browser type and version</li>
+      <li>Operating system</li>
+      <li>Referring website</li>
+      <li>Pages visited and time spent</li>
+      <li>Date and time of visit</li>
+    </ul>
+    <p>This data is used solely to understand general usage patterns and improve the Service. It is not used to identify individual users.</p>
+
+    <h2>4. Cookies</h2>
+    <p>The Investment Time Tracker does not use cookies for tracking or advertising purposes. If the hosting platform sets any technical cookies required for the site to function, those are managed by the hosting provider and are not used by us for data collection.</p>
+
+    <h2>5. Third-Party Links</h2>
+    <p>The Service contains links to external websites (including financial data providers, investing platforms, and educational resources). We are not responsible for the privacy practices of these third-party sites. We encourage you to review the privacy policies of any external site you visit through our links.</p>
+
+    <h2>6. Data Storage</h2>
+    <p>Since the calculator runs entirely client-side, no user-entered data is stored on our servers. Your browser may cache the page locally as part of normal browsing behavior, which you can clear through your browser settings at any time.</p>
+
+    <h2>7. Children's Privacy</h2>
+    <p>The Service is not directed at individuals under the age of 18. We do not knowingly collect personal information from children. If you are under 18, please use the Service only with the involvement of a parent or guardian.</p>
+
+    <h2>8. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date. Your continued use of the Service after changes are posted constitutes acceptance of the revised policy.</p>
+
+    <h2>9. Contact</h2>
+    <p>If you have questions or concerns about this Privacy Policy, please reach out via <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener">X (@HarryHH1993)</a>.</p>
   </div>
 
-  <div class="blog-footer">
-    <p>&copy; 2026 Investment Time Tracker. For educational purposes only, not financial advice.</p>
-  </div>
+  <footer class="page-footer">
+    <p>&copy; 2026 Investment Time Tracker<br><a href="terms.html">Terms of Service</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
 </div>
 
 </body>

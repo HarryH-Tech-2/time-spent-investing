@@ -71,41 +71,35 @@ body{
   display:flex;align-items:center;justify-content:center;
   color:#fff;font-size:.8rem;font-weight:900;
 }
-.bmc-btn{
-  display:inline-flex;align-items:center;gap:.5rem;
-  padding:.45rem 1rem;border-radius:10px;text-decoration:none;
-  background:#ffdd00;color:#000;font-weight:600;font-size:.82rem;
-  transition:all .25s;box-shadow:0 2px 8px rgba(255,221,0,.3);
-  font-family:Arial,Helvetica,sans-serif;
-}
-.bmc-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,221,0,.4)}
-.bmc-btn svg{width:18px;height:18px}
 .nav-links{display:flex;align-items:center;gap:.75rem}
-.blog-dropdown{position:relative}
-.blog-dropdown-btn{
+.nav-link{
   display:inline-flex;align-items:center;gap:.4rem;
   padding:.45rem .9rem;border-radius:10px;text-decoration:none;
   background:var(--surface2);color:var(--text);font-weight:600;font-size:.82rem;
-  transition:all .25s;border:1px solid var(--border);cursor:pointer;
+  transition:all .25s;border:1px solid var(--border);
   font-family:Arial,Helvetica,sans-serif;
 }
-.blog-dropdown-btn:hover{background:var(--surface3);transform:translateY(-1px)}
-.blog-dropdown-btn svg{width:14px;height:14px;transition:transform .2s}
-.blog-dropdown.open .blog-dropdown-btn svg{transform:rotate(180deg)}
+.nav-link:hover{background:var(--surface3);transform:translateY(-1px)}
+.blog-dropdown{position:relative}
+.blog-dropdown .nav-link svg{width:14px;height:14px;transition:transform .2s}
+.blog-dropdown:hover .nav-link svg{transform:rotate(180deg)}
 .blog-dropdown-menu{
-  display:none;position:absolute;top:calc(100% + 6px);right:0;
-  background:var(--surface);border:1px solid var(--border);border-radius:12px;
-  box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden;z-index:200;
+  display:none;position:absolute;top:100%;right:0;padding-top:6px;
+  z-index:200;
 }
-.blog-dropdown.open .blog-dropdown-menu{display:block}
-.blog-dropdown-menu a{
+.blog-dropdown:hover .blog-dropdown-menu{display:block}
+.blog-dropdown-menu-inner{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden;
+}
+.blog-dropdown-menu-inner a{
   display:block;padding:.75rem 1rem;text-decoration:none;color:var(--text);
   font-size:.82rem;transition:background .15s;border-bottom:1px solid var(--border);
 }
-.blog-dropdown-menu a:last-child{border-bottom:none}
-.blog-dropdown-menu a:hover{background:var(--surface2)}
-.blog-dropdown-menu a .blog-menu-title{font-weight:600;display:block}
-.blog-dropdown-menu a .blog-menu-date{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
+.blog-dropdown-menu-inner a:last-child{border-bottom:none}
+.blog-dropdown-menu-inner a:hover{background:var(--surface2)}
+.blog-dropdown-menu-inner a .blog-menu-title{font-weight:600;display:block}
+.blog-dropdown-menu-inner a .blog-menu-date{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
 .x-btn{
   display:inline-flex;align-items:center;justify-content:center;
   width:36px;height:36px;border-radius:10px;text-decoration:none;
@@ -381,6 +375,34 @@ body{
   max-width:700px;margin:0 auto;
 }
 
+/* Site Footer */
+.site-footer{
+  margin-top:3rem;padding:2rem 1.5rem 1.5rem;
+  border-top:1px solid var(--border);
+}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:1.5rem;
+}
+.footer-col h4{
+  font-size:.65rem;color:var(--text-dim);letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:.75rem;font-family:Arial,Helvetica,sans-serif;
+}
+.footer-col a{
+  display:block;font-size:.82rem;color:var(--text-muted);text-decoration:none;
+  padding:.25rem 0;transition:color .2s;
+}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{
+  padding-top:1rem;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;
+}
+.footer-bottom p{font-size:.7rem;color:var(--text-dim)}
+.footer-bottom a{color:var(--text-dim);text-decoration:none;font-size:.7rem}
+.footer-bottom a:hover{color:var(--accent)}
+.footer-legal{display:flex;gap:1rem}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+
 /* Hidden */
 .hidden{display:none}
 
@@ -407,32 +429,31 @@ body{
       <span>Investment Time Tracker</span>
     </a>
     <div class="nav-links">
-      <div class="blog-dropdown" id="blogDropdown">
-        <button class="blog-dropdown-btn" onclick="document.getElementById('blogDropdown').classList.toggle('open')">
+      <div class="blog-dropdown">
+        <a href="blog.html" class="nav-link">
           Blog
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
+        </a>
         <div class="blog-dropdown-menu">
-          <a href="blog-how-long-should-i-spend-investing.html">
-            <span class="blog-menu-title">How Long Should I Spend Investing?</span>
-            <span class="blog-menu-date">March 18, 2026</span>
-          </a>
-          <a href="blog-how-much-money-can-i-make-per-hour-investing.html">
-            <span class="blog-menu-title">How Much Money Can I Make Per Hour Investing?</span>
-            <span class="blog-menu-date">March 28, 2026</span>
-          </a>
-          <a href="blog-how-to-track-time-spent-investing.html">
-            <span class="blog-menu-title">How to Track the Time I Spend Investing</span>
-            <span class="blog-menu-date">April 8, 2026</span>
-          </a>
+          <div class="blog-dropdown-menu-inner">
+            <a href="blog-how-long-should-i-spend-investing.html">
+              <span class="blog-menu-title">How Long Should I Spend Investing?</span>
+              <span class="blog-menu-date">March 18, 2026</span>
+            </a>
+            <a href="blog-how-much-money-can-i-make-per-hour-investing.html">
+              <span class="blog-menu-title">How Much Money Can I Make Per Hour Investing?</span>
+              <span class="blog-menu-date">March 28, 2026</span>
+            </a>
+            <a href="blog-how-to-track-time-spent-investing.html">
+              <span class="blog-menu-title">How to Track the Time I Spend Investing</span>
+              <span class="blog-menu-date">April 8, 2026</span>
+            </a>
+          </div>
         </div>
       </div>
+      <a href="about.html" class="nav-link">About</a>
       <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener" class="x-btn" title="Follow on X">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-      <a href="https://buymeacoffee.com/harryhh" target="_blank" rel="noopener" class="bmc-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
-        Buy me a coffee
       </a>
     </div>
   </div>
@@ -575,10 +596,41 @@ body{
   </div>
 
   <!-- Disclaimer -->
-  <footer class="disclaimer">
+  <div class="disclaimer">
     <p>This tool is for informational and educational purposes only. Benchmark returns are approximate historical averages and may not reflect actual market performance for your specific time period. This is not financial advice. Always consult a qualified financial advisor before making investment decisions. Past performance is not indicative of future results.</p>
-  </footer>
+  </div>
 </div>
+
+<!-- Site Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Tool</h4>
+        <a href="index.html">Investment Time Tracker</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Blog</h4>
+        <a href="blog-how-long-should-i-spend-investing.html">How Long Should I Spend Investing?</a>
+        <a href="blog-how-much-money-can-i-make-per-hour-investing.html">How Much Money Can I Make Per Hour Investing?</a>
+        <a href="blog-how-to-track-time-spent-investing.html">How to Track the Time I Spend Investing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener">Follow on X</a>
+        <a href="https://www.etoro.com" target="_blank" rel="noopener">eToro</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Investment Time Tracker</p>
+      <div class="footer-legal">
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script>
 // ── Particle System (optimized — no shadowBlur, minimal save/restore) ──
@@ -907,11 +959,6 @@ $('calcBtn').addEventListener('click', () => {
   resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
-// Blog dropdown close on outside click
-document.addEventListener('click', function(e) {
-  const dropdown = document.getElementById('blogDropdown');
-  if (dropdown && !dropdown.contains(e.target)) dropdown.classList.remove('open');
-});
 </script>
 </body>
 </html>

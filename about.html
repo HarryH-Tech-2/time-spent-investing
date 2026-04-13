@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Investment Time Tracker</title>
+<meta name="description" content="Learn about Harry, the creator of Investment Time Tracker, and why he built a tool to measure the true hourly value of active investing.">
+
+<meta property="og:title" content="About | Investment Time Tracker">
+<meta property="og:description" content="Why I built a tool to measure the true hourly value of active investing.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@HarryHH1993">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%231a7a4c'/><stop offset='100%25' stop-color='%230ea5e9'/></linearGradient></defs><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50' y='62' text-anchor='middle' font-size='40' font-weight='bold' font-family='serif' fill='white'>$t</text></svg>">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ffffff;--surface:#ffffff;--surface2:#f7f7f8;--surface3:#efefef;
+  --border:#e2e2e6;--border-light:#d0d0d6;
+  --text:#1a1a1a;--text-muted:#666;--text-dim:#999;
+  --green:#0d8a50;--green-dim:#0d8a5012;
+  --accent:#4a3db8;--accent-dim:#4a3db812;
+  --shadow:0 1px 3px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.03);
+  --shadow-lg:0 4px 12px rgba(0,0,0,.05), 0 16px 40px rgba(0,0,0,.05);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 1.5rem}
+.navbar-inner{max-width:1100px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between}
+.navbar-brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.1rem;color:var(--text);text-decoration:none}
+.navbar-brand .brand-icon{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#1a7a4c,#0ea5e9);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;font-weight:900}
+.nav-links{display:flex;align-items:center;gap:.75rem}
+.x-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;text-decoration:none;background:#0f0f0f;color:#fff;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.x-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.x-btn svg{width:16px;height:16px}
+.nav-link{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.45rem .9rem;border-radius:10px;text-decoration:none;
+  background:var(--surface2);color:var(--text);font-weight:600;font-size:.82rem;
+  transition:all .25s;border:1px solid var(--border);font-family:Arial,Helvetica,sans-serif;
+}
+.nav-link:hover{background:var(--surface3);transform:translateY(-1px)}
+.blog-dropdown{position:relative}
+.blog-dropdown .nav-link svg{width:14px;height:14px;transition:transform .2s}
+.blog-dropdown:hover .nav-link svg{transform:rotate(180deg)}
+.blog-dropdown-menu{display:none;position:absolute;top:100%;right:0;padding-top:6px;z-index:200}
+.blog-dropdown:hover .blog-dropdown-menu{display:block}
+.blog-dropdown-menu-inner{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden}
+.blog-dropdown-menu-inner a{display:block;padding:.75rem 1rem;text-decoration:none;color:var(--text);font-size:.82rem;transition:background .15s;border-bottom:1px solid var(--border)}
+.blog-dropdown-menu-inner a:last-child{border-bottom:none}
+.blog-dropdown-menu-inner a:hover{background:var(--surface2)}
+.blog-dropdown-menu-inner a .blog-menu-title{font-weight:600;display:block}
+.blog-dropdown-menu-inner a .blog-menu-date{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
+
+.page-container{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.page-header{text-align:center;padding:2.5rem 0 2rem;position:relative}
+.page-header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.page-header h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-0.02em;line-height:1.1;background:linear-gradient(135deg,#1a1a1a 40%,var(--text-muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.page-header p{color:var(--text-muted);margin-top:.75rem;font-size:.95rem}
+
+.about-content h2{font-size:1.35rem;font-weight:700;margin:2.5rem 0 1rem;color:var(--text)}
+.about-content p{font-size:1rem;line-height:1.75;color:var(--text);margin-bottom:1.25rem}
+.about-content a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.about-content a:hover{color:var(--green)}
+.about-content ul{margin:1rem 0 1.5rem 1.5rem;line-height:1.75}
+.about-content li{margin-bottom:.4rem;font-size:1rem}
+
+.highlight-card{
+  background:var(--green-dim);border:1px solid #0d8a5025;border-radius:12px;
+  padding:1.5rem;margin:2rem 0;
+}
+.highlight-card p{margin-bottom:0;font-size:.95rem}
+
+.page-footer{margin-top:3rem;padding:1.25rem 0;border-top:1px solid var(--border);text-align:center}
+.page-footer p{font-size:.75rem;color:var(--text-dim)}
+.page-footer a{color:var(--text-dim);text-decoration:none;margin:0 .5rem}
+.page-footer a:hover{color:var(--accent)}
+
+@media(max-width:700px){.page-container{padding:1.25rem 1rem 3rem}.navbar-brand span{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <div class="brand-icon">$t</div>
+      <span>Investment Time Tracker</span>
+    </a>
+    <div class="nav-links">
+      <div class="blog-dropdown">
+        <a href="blog.html" class="nav-link">
+          Blog
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="blog-dropdown-menu">
+          <div class="blog-dropdown-menu-inner">
+            <a href="blog-how-long-should-i-spend-investing.html">
+              <span class="blog-menu-title">How Long Should I Spend Investing?</span>
+              <span class="blog-menu-date">March 18, 2026</span>
+            </a>
+            <a href="blog-how-much-money-can-i-make-per-hour-investing.html">
+              <span class="blog-menu-title">How Much Money Can I Make Per Hour Investing?</span>
+              <span class="blog-menu-date">March 28, 2026</span>
+            </a>
+            <a href="blog-how-to-track-time-spent-investing.html">
+              <span class="blog-menu-title">How to Track the Time I Spend Investing</span>
+              <span class="blog-menu-date">April 8, 2026</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener" class="x-btn" title="Follow on X">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-container">
+  <header class="page-header">
+    <h1>About</h1>
+    <p>The story behind the Investment Time Tracker</p>
+  </header>
+
+  <div class="about-content">
+    <h2>Hey, I'm Harry</h2>
+
+    <p>I'm a retail investor and builder based in the UK. I've been actively investing for several years now, mostly through <a href="https://www.etoro.com" target="_blank" rel="noopener">eToro</a>, where I manage a portfolio across stocks, ETFs, and the occasional crypto position. You can find me on <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener">X (@HarryHH1993)</a> where I share thoughts on investing, time management, and the tools I build.</p>
+
+    <p>Like a lot of people, I got into investing thinking that more research and more screen time would automatically translate into better returns. I spent hours every week reading earnings reports, watching market analysis videos, and scrolling through investing forums trying to find an edge. It felt productive. It felt like I was doing something smart with my money.</p>
+
+    <p>Then one day I actually sat down and calculated how much I was earning per hour from all that effort. The number was, to put it politely, not great. I was spending more time on investing than some people spend on a part-time job, and my returns weren't meaningfully better than if I'd just bought an index fund and gone for a walk.</p>
+
+    <h2>Why I Built This Tool</h2>
+
+    <p>That realization is what led me to build the <a href="index.html">Investment Time Tracker</a>. I wanted a simple, honest way to answer a question that most investing platforms don't even acknowledge: <strong>is the time I'm spending on this actually worth it?</strong></p>
+
+    <p>The tool calculates your effective hourly rate from active investing and compares it against what you'd earn passively from major benchmarks like the S&P 500, NASDAQ, gold, and Bitcoin. It's a reality check in calculator form.</p>
+
+    <div class="highlight-card">
+      <p>My goal with this project is straightforward: help people make more intentional decisions about how they spend their investing time. Not everyone needs to go fully passive, but everyone deserves to know whether their active approach is actually paying off.</p>
+    </div>
+
+    <h2>My Investing Philosophy</h2>
+
+    <p>I'm not anti-active investing. I still actively manage part of my portfolio on eToro, and I enjoy the process of researching companies and understanding businesses. But I've become much more disciplined about the time I allocate to it. These days I spend about 1 to 2 hours per week on active investing decisions, and the rest of my portfolio sits in diversified index funds.</p>
+
+    <p>A few things I believe strongly:</p>
+
+    <ul>
+      <li><strong>Time is your most valuable asset.</strong> More valuable than any stock pick. If your investing time isn't generating returns above a passive benchmark, you're losing money in the most important currency.</li>
+      <li><strong>Honesty beats optimism.</strong> The investing world is full of survivorship bias and cherry-picked returns. I'd rather know my real numbers, even if they're humbling, than fool myself with selective accounting.</li>
+      <li><strong>Simplicity wins.</strong> The best investing strategy is one you can maintain consistently without it consuming your life. For most people, that means a heavily passive approach with a small active allocation if they enjoy it.</li>
+    </ul>
+
+    <h2>About the Blog</h2>
+
+    <p>I started the <a href="blog.html">blog</a> to share what I've learned about the intersection of time and investing. The posts are practical, opinionated, and based on my own experience. I write about topics like <a href="blog-how-long-should-i-spend-investing.html">how long you should spend investing</a>, <a href="blog-how-much-money-can-i-make-per-hour-investing.html">what your hourly rate from investing really looks like</a>, and <a href="blog-how-to-track-time-spent-investing.html">how to track your investing time</a>.</p>
+
+    <p>If any of this resonates, feel free to reach out on <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener">X</a>. I'm always happy to chat about investing, time management, or anything in between.</p>
+  </div>
+
+  <footer class="page-footer">
+    <p>&copy; 2026 Investment Time Tracker<br><a href="terms.html">Terms of Service</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+</div>
+
+</body>
+</html>

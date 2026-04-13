@@ -59,40 +59,33 @@ body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-ser
 }
 .x-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
 .x-btn svg{width:16px;height:16px}
-.bmc-btn{
-  display:inline-flex;align-items:center;gap:.5rem;
-  padding:.45rem 1rem;border-radius:10px;text-decoration:none;
-  background:#ffdd00;color:#000;font-weight:600;font-size:.82rem;
-  transition:all .25s;box-shadow:0 2px 8px rgba(255,221,0,.3);
-}
-.bmc-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,221,0,.4)}
-.bmc-btn svg{width:18px;height:18px}
-
-/* Blog dropdown */
-.blog-dropdown{position:relative}
-.blog-dropdown-btn{
+.nav-link{
   display:inline-flex;align-items:center;gap:.4rem;
   padding:.45rem .9rem;border-radius:10px;text-decoration:none;
   background:var(--surface2);color:var(--text);font-weight:600;font-size:.82rem;
-  transition:all .25s;border:1px solid var(--border);cursor:pointer;
+  transition:all .25s;border:1px solid var(--border);
+  font-family:Arial,Helvetica,sans-serif;
 }
-.blog-dropdown-btn:hover{background:var(--surface3);transform:translateY(-1px)}
-.blog-dropdown-btn svg{width:14px;height:14px;transition:transform .2s}
-.blog-dropdown.open .blog-dropdown-btn svg{transform:rotate(180deg)}
+.nav-link:hover{background:var(--surface3);transform:translateY(-1px)}
+.blog-dropdown{position:relative}
+.blog-dropdown .nav-link svg{width:14px;height:14px;transition:transform .2s}
+.blog-dropdown:hover .nav-link svg{transform:rotate(180deg)}
 .blog-dropdown-menu{
-  display:none;position:absolute;top:calc(100% + 6px);right:0;
-  background:var(--surface);border:1px solid var(--border);border-radius:12px;
-  box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden;z-index:200;
+  display:none;position:absolute;top:100%;right:0;padding-top:6px;z-index:200;
 }
-.blog-dropdown.open .blog-dropdown-menu{display:block}
-.blog-dropdown-menu a{
+.blog-dropdown:hover .blog-dropdown-menu{display:block}
+.blog-dropdown-menu-inner{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  box-shadow:var(--shadow-lg);min-width:280px;overflow:hidden;
+}
+.blog-dropdown-menu-inner a{
   display:block;padding:.75rem 1rem;text-decoration:none;color:var(--text);
   font-size:.82rem;transition:background .15s;border-bottom:1px solid var(--border);
 }
-.blog-dropdown-menu a:last-child{border-bottom:none}
-.blog-dropdown-menu a:hover{background:var(--surface2)}
-.blog-dropdown-menu a .blog-menu-title{font-weight:600;display:block}
-.blog-dropdown-menu a .blog-menu-date{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
+.blog-dropdown-menu-inner a:last-child{border-bottom:none}
+.blog-dropdown-menu-inner a:hover{background:var(--surface2)}
+.blog-dropdown-menu-inner a .blog-menu-title{font-weight:600;display:block}
+.blog-dropdown-menu-inner a .blog-menu-date{font-size:.7rem;color:var(--text-dim);margin-top:.15rem}
 
 /* Blog Layout */
 .blog-container{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem;position:relative;z-index:1}
@@ -180,7 +173,6 @@ body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-ser
 </head>
 <body>
 
-<!-- Navbar -->
 <nav class="navbar">
   <div class="navbar-inner">
     <a href="index.html" class="navbar-brand">
@@ -188,32 +180,31 @@ body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-ser
       <span>Investment Time Tracker</span>
     </a>
     <div class="nav-links">
-      <div class="blog-dropdown" id="blogDropdown">
-        <button class="blog-dropdown-btn" onclick="document.getElementById('blogDropdown').classList.toggle('open')">
+      <div class="blog-dropdown">
+        <a href="blog.html" class="nav-link">
           Blog
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
+        </a>
         <div class="blog-dropdown-menu">
-          <a href="blog-how-long-should-i-spend-investing.html">
-            <span class="blog-menu-title">How Long Should I Spend Investing?</span>
-            <span class="blog-menu-date">March 18, 2026</span>
-          </a>
-          <a href="blog-how-much-money-can-i-make-per-hour-investing.html">
-            <span class="blog-menu-title">How Much Money Can I Make Per Hour Investing?</span>
-            <span class="blog-menu-date">March 28, 2026</span>
-          </a>
-          <a href="blog-how-to-track-time-spent-investing.html">
-            <span class="blog-menu-title">How to Track the Time I Spend Investing</span>
-            <span class="blog-menu-date">April 8, 2026</span>
-          </a>
+          <div class="blog-dropdown-menu-inner">
+            <a href="blog-how-long-should-i-spend-investing.html">
+              <span class="blog-menu-title">How Long Should I Spend Investing?</span>
+              <span class="blog-menu-date">March 18, 2026</span>
+            </a>
+            <a href="blog-how-much-money-can-i-make-per-hour-investing.html">
+              <span class="blog-menu-title">How Much Money Can I Make Per Hour Investing?</span>
+              <span class="blog-menu-date">March 28, 2026</span>
+            </a>
+            <a href="blog-how-to-track-time-spent-investing.html">
+              <span class="blog-menu-title">How to Track the Time I Spend Investing</span>
+              <span class="blog-menu-date">April 8, 2026</span>
+            </a>
+          </div>
         </div>
       </div>
+      <a href="about.html" class="nav-link">About</a>
       <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener" class="x-btn" title="Follow on X">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-      <a href="https://buymeacoffee.com/harryhh" target="_blank" rel="noopener" class="bmc-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
-        Buy me a coffee
       </a>
     </div>
   </div>
@@ -334,12 +325,5 @@ body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-ser
   </div>
 </div>
 
-<script>
-// Close dropdown when clicking outside
-document.addEventListener('click', function(e) {
-  const dropdown = document.getElementById('blogDropdown');
-  if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
-});
-</script>
 </body>
 </html>
