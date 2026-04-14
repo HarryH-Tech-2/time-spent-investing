@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terms of Service | Investment Time Tracker</title>
 <meta name="description" content="Terms of Service for the Investment Time Tracker website and tool.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%231a7a4c'/><stop offset='100%25' stop-color='%230ea5e9'/></linearGradient></defs><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50' y='62' text-anchor='middle' font-size='40' font-weight='bold' font-family='serif' fill='white'>$t</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='100%25' x2='100%25' y2='0%25'><stop offset='0%25' stop-color='%230d8a50'/><stop offset='100%25' stop-color='%230ea5e9'/></linearGradient></defs><rect width='100' height='100' rx='22' fill='url(%23g)'/><path d='M18 70 L38 50 L52 58 L82 26' stroke='white' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M68 26 L82 26 L82 40' stroke='white' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -30,11 +30,11 @@ body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-ser
 .x-btn svg{width:16px;height:16px}
 .nav-link{
   display:inline-flex;align-items:center;gap:.4rem;
-  padding:.45rem .9rem;border-radius:10px;text-decoration:none;
-  background:var(--surface2);color:var(--text);font-weight:600;font-size:.82rem;
-  transition:all .25s;border:1px solid var(--border);font-family:Arial,Helvetica,sans-serif;
+  padding:.45rem .6rem;text-decoration:none;
+  color:var(--text-muted);font-weight:500;font-size:.88rem;
+  transition:color .2s;font-family:Arial,Helvetica,sans-serif;
 }
-.nav-link:hover{background:var(--surface3);transform:translateY(-1px)}
+.nav-link:hover{color:var(--text)}
 .blog-dropdown{position:relative}
 .blog-dropdown .nav-link svg{width:14px;height:14px;transition:transform .2s}
 .blog-dropdown:hover .nav-link svg{transform:rotate(180deg)}
@@ -63,6 +63,33 @@ body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-ser
 .page-footer p{font-size:.75rem;color:var(--text-dim)}
 .page-footer a{color:var(--text-dim);text-decoration:none;margin:0 .5rem}
 .page-footer a:hover{color:var(--accent)}
+
+.site-footer{
+  margin-top:3rem;padding:2rem 1.5rem 1.5rem;
+  border-top:1px solid var(--border);
+}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:1.5rem;
+}
+.footer-col h4{
+  font-size:.65rem;color:var(--text-dim);letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:.75rem;font-family:Arial,Helvetica,sans-serif;
+}
+.footer-col a{
+  display:block;font-size:.82rem;color:var(--text-muted);text-decoration:none;
+  padding:.25rem 0;transition:color .2s;
+}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{
+  padding-top:1rem;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;
+}
+.footer-bottom p{font-size:.7rem;color:var(--text-dim)}
+.footer-bottom a{color:var(--text-dim);text-decoration:none;font-size:.7rem}
+.footer-bottom a:hover{color:var(--accent)}
+.footer-legal{display:flex;gap:1rem}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
 
 @media(max-width:700px){.page-container{padding:1.25rem 1rem 3rem}.navbar-brand span{display:none}}
 </style>
@@ -150,11 +177,37 @@ body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-ser
     <h2>10. Contact</h2>
     <p>If you have any questions about these Terms of Service, you can reach out via <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener">X (@HarryHH1993)</a>.</p>
   </div>
-
-  <footer class="page-footer">
-    <p>&copy; 2026 Investment Time Tracker<br><a href="terms.html">Terms of Service</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
-  </footer>
 </div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Tool</h4>
+        <a href="index.html">Investment Time Tracker</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="footer-col">
+        <h4>Blog</h4>
+        <a href="blog-how-long-should-i-spend-investing.html">How Long Should I Spend Investing?</a>
+        <a href="blog-how-much-money-can-i-make-per-hour-investing.html">How Much Money Can I Make Per Hour Investing?</a>
+        <a href="blog-how-to-track-time-spent-investing.html">How to Track the Time I Spend Investing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://x.com/HarryHH1993" target="_blank" rel="noopener">Follow on X</a>
+        <a href="https://www.etoro.com/people/harryh1993" target="_blank" rel="noopener">eToro</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Investment Time Tracker</p>
+      <div class="footer-legal">
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

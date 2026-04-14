@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animated Gradients Skill — Examples</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; }
+
+  /* ───────────────────────────────────────────
+     Shared layout
+  ─────────────────────────────────────────── */
+  section {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+  }
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 42rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    font-size: clamp(0.85rem, 2vw, 1.15rem);
+    opacity: 0.8;
+    max-width: 48ch;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25em 0.75em;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+  code {
+    font-size: 0.85em;
+    background: rgba(0,0,0,0.2);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+  }
+
+  /* ───────────────────────────────────────────
+     1 — Canvas Mesh Gradient (the default technique)
+  ─────────────────────────────────────────── */
+  .s-mesh {
+    background: #0F172A;
+    color: #fff;
+  }
+  .s-mesh canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .s-mesh .label { background: rgba(125,211,252,0.2); color: #7DD3FC; }
+
+  /* ───────────────────────────────────────────
+     2 — CSS Sliding Gradient
+  ─────────────────────────────────────────── */
+  .s-css {
+    background: linear-gradient(
+      120deg,
+      #7DD3FC, #A78BFA, #F0ABFC, #FDA4AF, #7DD3FC
+    );
+    background-size: 300% 300%;
+    color: #fff;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .s-css { animation: css-flow 18s ease-in-out infinite; }
+  }
+  @keyframes css-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+  .s-css .label { background: rgba(255,255,255,0.2); }
+
+  /* ───────────────────────────────────────────
+     3 — Conic Rotating Orb
+  ─────────────────────────────────────────── */
+  .s-conic {
+    background: #0F172A;
+    color: #fff;
+  }
+  .s-conic .orb-wrap {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+  .orb {
+    width: min(70vw, 500px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #7DD3FC, #A78BFA, #F0ABFC, #FDA4AF, #7DD3FC);
+    filter: blur(40px);
+    opacity: 0.6;
+    will-change: transform;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .orb { animation: spin 14s linear infinite; }
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .s-conic .label { background: rgba(167,139,250,0.25); color: #C4B5FD; }
+
+  /* ───────────────────────────────────────────
+     4 — Animated Gradient Text
+  ─────────────────────────────────────────── */
+  .s-text {
+    background: #FFFBEB;
+    color: #1E293B;
+  }
+  .gradient-text {
+    background: linear-gradient(90deg, #7C3AED, #EC4899, #F59E0B, #7C3AED);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .gradient-text { animation: text-flow 6s linear infinite; }
+  }
+  @keyframes text-flow { to { background-position: 200% 0; } }
+  .s-text .label { background: rgba(124,58,237,0.1); color: #7C3AED; }
+  .s-text p { color: #64748B; }
+
+  /* ───────────────────────────────────────────
+     5 — SVG Animated Gradient Shape
+  ─────────────────────────────────────────── */
+  .s-svg {
+    background: #1E1B4B;
+    color: #fff;
+  }
+  .s-svg svg.demo {
+    width: min(90vw, 500px);
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+  .s-svg .label { background: rgba(248,113,113,0.2); color: #FCA5A5; }
+  @media (prefers-reduced-motion: reduce) {
+    .s-svg svg animate { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     1 — Canvas Mesh Gradient
+     Technique: simplex noise rendered to 64x36 buffer, upscaled
+     This is the skill's default / recommended technique.
+═══════════════════════════════════════════ -->
+<section class="s-mesh">
+  <canvas id="mesh-canvas"></canvas>
+  <div class="content">
+    <span class="label">Canvas Mesh Gradient</span>
+    <h1>Aurora</h1>
+    <p>Simplex noise rendered to a tiny 64&times;36 buffer and upscaled with bilinear interpolation. Smooth, organic, no blob edges. This is the default technique.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     2 — CSS Sliding Gradient
+     Technique: animated background-position on oversized gradient
+═══════════════════════════════════════════ -->
+<section class="s-css">
+  <div class="content">
+    <span class="label">CSS Sliding Gradient</span>
+    <h1>Flowing Colors</h1>
+    <p>A simple <code>background-size: 300%</code> with animated <code>background-position</code>. The cheapest approach, works everywhere. Best for subtle two-to-four-stop loops.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     3 — Conic Rotating Orb
+     Technique: conic-gradient + transform: rotate + blur
+═══════════════════════════════════════════ -->
+<section class="s-conic">
+  <div class="orb-wrap"><div class="orb"></div></div>
+  <div class="content">
+    <span class="label">Conic Gradient</span>
+    <h1>Rotating Orb</h1>
+    <p>A <code>conic-gradient</code> circle with <code>filter: blur</code> and a continuous rotation. GPU-accelerated via <code>will-change: transform</code>. Great for halos and accent orbs.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     4 — Animated Gradient Text
+     Technique: background-clip: text with sliding background
+═══════════════════════════════════════════ -->
+<section class="s-text">
+  <div class="content">
+    <span class="label">Gradient Text</span>
+    <h1 class="gradient-text">Shifting Spectrum</h1>
+    <p>CSS <code>background-clip: text</code> with an animated background position. Faster duration (6s) works here because it's a small element, not a full-screen loop.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     5 — SVG Animated Gradient
+     Technique: <animate> on stop-color inside an SVG shape
+═══════════════════════════════════════════ -->
+<section class="s-svg">
+  <div class="content">
+    <span class="label">SVG Gradient</span>
+    <svg class="demo" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="svg-grad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#7DD3FC">
+            <animate attributeName="stop-color"
+                     values="#7DD3FC; #A78BFA; #F0ABFC; #7DD3FC"
+                     dur="14s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="50%" stop-color="#A78BFA">
+            <animate attributeName="stop-color"
+                     values="#A78BFA; #F0ABFC; #FDA4AF; #A78BFA"
+                     dur="14s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="100%" stop-color="#F0ABFC">
+            <animate attributeName="stop-color"
+                     values="#F0ABFC; #FDA4AF; #7DD3FC; #F0ABFC"
+                     dur="14s" repeatCount="indefinite" />
+          </stop>
+        </linearGradient>
+      </defs>
+      <rect width="500" height="200" rx="24" fill="url(#svg-grad)" />
+    </svg>
+    <h1>SVG Shape Fill</h1>
+    <p>SVG <code>&lt;animate&gt;</code> on <code>stop-color</code> lets gradients fill any shape &mdash; rounded rects, text outlines, logo paths. Not GPU-accelerated, so keep SVGs modest in size.</p>
+  </div>
+</section>
+
+<script>
+/* ═══════════════════════════════════════════
+   Canvas Mesh Gradient — Simplex Noise
+   Palette: aurora | Speed: 0.06 | Zoom: 0.6 | Intensity: 0.4 | Octaves: 1
+═══════════════════════════════════════════ */
+
+// --- Simplex Noise (compact 2D) ---
+class SimplexNoise {
+  constructor(seed = 42) {
+    this.perm = new Uint8Array(512);
+    const p = new Uint8Array(256);
+    for (let i = 0; i < 256; i++) p[i] = i;
+    let s = seed;
+    for (let i = 255; i > 0; i--) {
+      s = (s * 16807 + 0) % 2147483647;
+      const j = s % (i + 1);
+      [p[i], p[j]] = [p[j], p[i]];
+    }
+    for (let i = 0; i < 512; i++) this.perm[i] = p[i & 255];
+  }
+  noise2D(x, y) {
+    const F2 = 0.5 * (Math.sqrt(3) - 1);
+    const G2 = (3 - Math.sqrt(3)) / 6;
+    const s = (x + y) * F2;
+    const i = Math.floor(x + s), j = Math.floor(y + s);
+    const t = (i + j) * G2;
+    const x0 = x - (i - t), y0 = y - (j - t);
+    const i1 = x0 > y0 ? 1 : 0, j1 = x0 > y0 ? 0 : 1;
+    const x1 = x0 - i1 + G2, y1 = y0 - j1 + G2;
+    const x2 = x0 - 1 + 2 * G2, y2 = y0 - 1 + 2 * G2;
+    const ii = i & 255, jj = j & 255;
+    const grad = (hash, gx, gy) => {
+      const h = hash & 7;
+      const u = h < 4 ? gx : gy;
+      const v = h < 4 ? gy : gx;
+      return ((h & 1) ? -u : u) + ((h & 2) ? -v : v);
+    };
+    let n0 = 0, n1 = 0, n2 = 0;
+    let t0 = 0.5 - x0 * x0 - y0 * y0;
+    if (t0 > 0) { t0 *= t0; n0 = t0 * t0 * grad(this.perm[ii + this.perm[jj]], x0, y0); }
+    let t1 = 0.5 - x1 * x1 - y1 * y1;
+    if (t1 > 0) { t1 *= t1; n1 = t1 * t1 * grad(this.perm[ii + i1 + this.perm[jj + j1]], x1, y1); }
+    let t2 = 0.5 - x2 * x2 - y2 * y2;
+    if (t2 > 0) { t2 *= t2; n2 = t2 * t2 * grad(this.perm[ii + 1 + this.perm[jj + 1]], x2, y2); }
+    return 70 * (n0 + n1 + n2);
+  }
+}
+
+(function meshGradient() {
+  const canvas = document.getElementById('mesh-canvas');
+  const ctx = canvas.getContext('2d');
+
+  // Offscreen buffer — tiny, upscaled with bilinear interpolation
+  const BW = 64, BH = 36;
+  const buf = document.createElement('canvas');
+  buf.width = BW; buf.height = BH;
+  const bctx = buf.getContext('2d');
+  const imgData = bctx.createImageData(BW, BH);
+  const pixels = imgData.data;
+
+  // Aurora palette
+  const bg = [15, 23, 42];       // dark navy
+  const colors = [
+    [125, 211, 252],  // sky
+    [167, 139, 250],  // violet
+    [240, 171, 252],  // pink
+    [253, 164, 175],  // rose
+  ];
+
+  const speed = 0.06;
+  const zoom = 0.6;
+  const intensity = 0.4;
+  const noise = new SimplexNoise(42);
+
+  let time = 0;
+  let running = true;
+
+  // Reduced-motion check
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq.matches) running = false;
+  mq.addEventListener('change', (e) => {
+    running = !e.matches;
+    if (running) requestAnimationFrame(draw);
+  });
+
+  function resize() {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function draw() {
+    time += speed;
+
+    for (let y = 0; y < BH; y++) {
+      for (let x = 0; x < BW; x++) {
+        const nx = x / BW * zoom;
+        const ny = y / BH * zoom;
+
+        let r = bg[0], g = bg[1], b = bg[2];
+
+        for (let c = 0; c < colors.length; c++) {
+          const val = noise.noise2D(nx + time * 0.3 + c * 1.7, ny + time * 0.2 + c * 2.3);
+          const w = Math.max(0, (val * 0.5 + 0.5)) * intensity;
+          // Additive blend for dark backgrounds
+          r += colors[c][0] * w;
+          g += colors[c][1] * w;
+          b += colors[c][2] * w;
+        }
+
+        const idx = (y * BW + x) * 4;
+        pixels[idx]     = Math.min(255, r);
+        pixels[idx + 1] = Math.min(255, g);
+        pixels[idx + 2] = Math.min(255, b);
+        pixels[idx + 3] = 255;
+      }
+    }
+
+    bctx.putImageData(imgData, 0, 0);
+    ctx.drawImage(buf, 0, 0, canvas.width, canvas.height);
+
+    if (running) requestAnimationFrame(draw);
+  }
+
+  draw();
+})();
+</script>
+
+</body>
+</html>

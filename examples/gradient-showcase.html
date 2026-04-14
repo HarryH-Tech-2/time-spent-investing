@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Gradient Showcase</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #09090b;
+    color: #fafafa;
+    min-height: 100vh;
+  }
+
+  /* ─── Header ─── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-gradient { position: absolute; inset: 0; z-index: 0; }
+  .hero-content {
+    position: relative; z-index: 1;
+    text-align: center; padding: 2rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #7dd3fc, #a78bfa, #f0abfc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    margin-top: 1rem;
+    font-size: 1.15rem;
+    color: #94a3b8;
+    max-width: 500px;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 2rem; z-index: 1;
+    font-size: 0.85rem; color: #475569;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ─── Section grid ─── */
+  .section-title {
+    padding: 4rem 2rem 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 2rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ─── Card ─── */
+  .card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 280px;
+    border: 1px solid #1e293b;
+  }
+  .card-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    z-index: 2;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  }
+  .card-label h3 { font-size: 1rem; font-weight: 600; }
+  .card-label p { font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem; }
+
+  /* ─── CSS-only effects ─── */
+
+  /* 1. Aurora blobs */
+  .aurora { position: relative; background: #0a1120; }
+  .aurora .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    will-change: transform;
+  }
+  .aurora .blob:nth-child(1) {
+    width: 60%; height: 60%; top: -10%; left: -10%;
+    background: radial-gradient(circle, #7dd3fc, transparent 70%);
+    animation: drift1 16s ease-in-out infinite alternate;
+  }
+  .aurora .blob:nth-child(2) {
+    width: 50%; height: 50%; bottom: -10%; right: -10%;
+    background: radial-gradient(circle, #a78bfa, transparent 70%);
+    animation: drift2 20s ease-in-out infinite alternate;
+  }
+  .aurora .blob:nth-child(3) {
+    width: 40%; height: 40%; top: 30%; left: 40%;
+    background: radial-gradient(circle, #f0abfc, transparent 70%);
+    animation: drift3 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift1 { to { transform: translate(40%, 30%) scale(1.2); } }
+  @keyframes drift2 { to { transform: translate(-30%, -40%) scale(1.1); } }
+  @keyframes drift3 { to { transform: translate(-20%, 25%) scale(0.9); } }
+
+  /* 2. Conic sweep */
+  .conic-sweep { background: #0a0a0a; position: relative; overflow: hidden; }
+  .conic-sweep::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg, #0ea5e9, #a78bfa, #f472b6, #0ea5e9);
+    animation: spin 8s linear infinite;
+    opacity: 0.35;
+    filter: blur(60px);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* 3. Pulsing radials */
+  .pulse-radials { background: #0f172a; position: relative; overflow: hidden; }
+  .pulse-radials .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid;
+    opacity: 0;
+    animation: ring-expand 4s ease-out infinite;
+  }
+  .pulse-radials .ring:nth-child(1) {
+    width: 40px; height: 40px; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-color: #0ea5e9;
+    animation-delay: 0s;
+  }
+  .pulse-radials .ring:nth-child(2) {
+    width: 40px; height: 40px; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-color: #a78bfa;
+    animation-delay: 1s;
+  }
+  .pulse-radials .ring:nth-child(3) {
+    width: 40px; height: 40px; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-color: #f0abfc;
+    animation-delay: 2s;
+  }
+  .pulse-radials .ring:nth-child(4) {
+    width: 40px; height: 40px; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-color: #06b6d4;
+    animation-delay: 3s;
+  }
+  @keyframes ring-expand {
+    0% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(12); }
+  }
+
+  /* 4. Moving mesh lines */
+  .mesh-lines {
+    background: #0a0a14;
+    background-image:
+      linear-gradient(rgba(99,102,241,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,102,241,0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: grid-scroll 20s linear infinite;
+  }
+  @keyframes grid-scroll {
+    to { background-position: 40px 40px; }
+  }
+
+  /* 5. Gradient border glow */
+  .glow-border {
+    background: #0a0a0a;
+    position: relative;
+  }
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 18px;
+    background: conic-gradient(from 0deg, #0ea5e9, #a78bfa, #f472b6, #22c55e, #0ea5e9);
+    animation: spin 4s linear infinite;
+    z-index: -1;
+  }
+  .glow-border::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: #0a0a0a;
+    z-index: 0;
+  }
+  .glow-border .card-label { z-index: 1; }
+
+  /* 6. Wave layers (SVG animated in CSS) */
+  .wave-layers { background: linear-gradient(180deg, #1e1b4b, #0f172a); position: relative; overflow: hidden; }
+  .wave-layers svg {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 200%; height: 60%;
+    opacity: 0.3;
+  }
+  .wave-layers svg:nth-child(1) { animation: wave-shift 8s ease-in-out infinite alternate; opacity: 0.2; }
+  .wave-layers svg:nth-child(2) { animation: wave-shift 12s ease-in-out infinite alternate-reverse; opacity: 0.15; bottom: 10px; }
+  @keyframes wave-shift { to { transform: translateX(-25%); } }
+</style>
+</head>
+<body>
+
+<!-- ═══════ HERO — Canvas mesh gradient ═══════ -->
+<section class="hero">
+  <div class="hero-gradient" id="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Animated Gradient<br>Showcase</h1>
+    <p>A collection of gradient effects built with CSS, SVG, and the Canvas MeshGradient module.</p>
+  </div>
+  <span class="scroll-hint">scroll to explore</span>
+</section>
+
+<!-- ═══════ Canvas-based (MeshGradient module) ═══════ -->
+<div class="section-title">Canvas MeshGradient &mdash; simplex noise driven</div>
+<div class="grid">
+  <div class="card" id="mg-aurora">
+    <div class="card-label"><h3>Aurora</h3><p>speed 0.05 &middot; zoom 0.5 &middot; octaves 2</p></div>
+  </div>
+  <div class="card" id="mg-sunset">
+    <div class="card-label"><h3>Sunset</h3><p>speed 0.08 &middot; zoom 0.8 &middot; intensity 0.5</p></div>
+  </div>
+  <div class="card" id="mg-synthwave">
+    <div class="card-label"><h3>Synthwave</h3><p>speed 0.1 &middot; zoom 1.2 &middot; octaves 3</p></div>
+  </div>
+  <div class="card" id="mg-ocean">
+    <div class="card-label"><h3>Ocean</h3><p>speed 0.03 &middot; zoom 0.4 &middot; octaves 1</p></div>
+  </div>
+  <div class="card" id="mg-forest">
+    <div class="card-label"><h3>Forest</h3><p>speed 0.04 &middot; zoom 0.7 &middot; intensity 0.45</p></div>
+  </div>
+  <div class="card" id="mg-citrus">
+    <div class="card-label"><h3>Citrus (Light)</h3><p>speed 0.06 &middot; zoom 0.6 &middot; light mode</p></div>
+  </div>
+</div>
+
+<!-- ═══════ CSS-only effects ═══════ -->
+<div class="section-title">Pure CSS &mdash; no JavaScript</div>
+<div class="grid">
+
+  <!-- Aurora blobs -->
+  <div class="card aurora">
+    <div class="blob"></div><div class="blob"></div><div class="blob"></div>
+    <div class="card-label"><h3>Aurora Blobs</h3><p>Radial gradients + blur + drift keyframes</p></div>
+  </div>
+
+  <!-- Conic sweep -->
+  <div class="card conic-sweep">
+    <div class="card-label"><h3>Conic Sweep</h3><p>conic-gradient rotation with blur</p></div>
+  </div>
+
+  <!-- Pulsing radials -->
+  <div class="card pulse-radials">
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="card-label"><h3>Pulse Radials</h3><p>Expanding rings with staggered delay</p></div>
+  </div>
+
+  <!-- Grid scroll -->
+  <div class="card mesh-lines">
+    <div class="card-label"><h3>Scrolling Grid</h3><p>CSS background-image line grid animation</p></div>
+  </div>
+
+  <!-- Glow border -->
+  <div class="card glow-border">
+    <div class="card-label"><h3>Gradient Border Glow</h3><p>Spinning conic-gradient border trick</p></div>
+  </div>
+
+  <!-- Wave layers -->
+  <div class="card wave-layers">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#7dd3fc" d="M0,160L60,170.7C120,181,240,203,360,186.7C480,171,600,117,720,112C840,107,960,149,1080,176C1200,203,1320,213,1380,218.7L1440,224V320H0Z"/>
+    </svg>
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#a78bfa" d="M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,229.3C840,235,960,213,1080,192C1200,171,1320,149,1380,138.7L1440,128V320H0Z"/>
+    </svg>
+    <div class="card-label"><h3>Wave Layers</h3><p>Animated SVG wave paths with CSS translate</p></div>
+  </div>
+
+</div>
+
+<div style="text-align:center; padding: 2rem; color: #334155; font-size: 0.8rem;">
+  Built with MeshGradient module + pure CSS techniques
+</div>
+
+<script type="module">
+import { MeshGradient } from './mesh-gradient.js';
+
+// Hero — full viewport
+new MeshGradient('#hero-bg', {
+  palette: 'brand', speed: 0.04, zoom: 0.5, intensity: 0.45, octaves: 2, seed: 7
+});
+
+// Card demos
+const demos = [
+  { id: 'mg-aurora',     opts: { palette: 'aurora',      speed: 0.05, zoom: 0.5,  intensity: 0.4,  octaves: 2, seed: 11 }},
+  { id: 'mg-sunset',     opts: { palette: 'sunset',      speed: 0.08, zoom: 0.8,  intensity: 0.5,  octaves: 1, seed: 22 }},
+  { id: 'mg-synthwave',  opts: { palette: 'synthwave',   speed: 0.10, zoom: 1.2,  intensity: 0.4,  octaves: 3, seed: 33 }},
+  { id: 'mg-ocean',      opts: { palette: 'ocean',       speed: 0.03, zoom: 0.4,  intensity: 0.4,  octaves: 1, seed: 44 }},
+  { id: 'mg-forest',     opts: { palette: 'forest',      speed: 0.04, zoom: 0.7,  intensity: 0.45, octaves: 2, seed: 55 }},
+  { id: 'mg-citrus',     opts: { palette: 'citrus',      speed: 0.06, zoom: 0.6,  intensity: 0.4,  octaves: 1, seed: 66 }},
+];
+
+// Lazy-init canvas gradients when cards scroll into view
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const id = entry.target.id;
+    const demo = demos.find(d => d.id === id);
+    if (demo && !demo.started) {
+      new MeshGradient(`#${id}`, demo.opts);
+      demo.started = true;
+    }
+  });
+}, { rootMargin: '200px' });
+
+demos.forEach(d => observer.observe(document.getElementById(d.id)));
+</script>
+</body>
+</html>
